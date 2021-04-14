@@ -1,5 +1,7 @@
-package gui;
+package View;
 
+import gui.MenuButton;
+import gui.PlayerNameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -15,8 +17,8 @@ public class ViewManager {
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = 768;
 	private AnchorPane mainPane;
-	private Stage mainStage;
-	private Scene mainScene,mainScene2;
+	private static Stage mainStage;
+	private Scene mainScene,PlayerScene;
 	public ViewManager() {
 		initScene1();
 		initScene2();
@@ -32,13 +34,13 @@ public class ViewManager {
 		mainScene = new Scene(mainPane,WIDTH,HEIGHT);
 	}
 	private void initScene2() {
-		ScenePlayer mainPane2 = new ScenePlayer();
-		mainScene2 = new Scene(mainPane2,WIDTH,HEIGHT);		
+		PlayerNameScene mainPane2 = new PlayerNameScene();
+		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);		
 	}
 	private void createLogo() {
 	}
 	private void createBackground() {
-		Image backgroundImage = new Image("/tc.jpg", 1024, 1024, false, false);
+		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		mainPane.setBackground(new Background(background));
 	}
@@ -52,12 +54,13 @@ public class ViewManager {
 	private void createPlayButton() {
 		MenuButton playButton = new MenuButton("PLAY");
 		mainPane.getChildren().add(playButton);
+		
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-					mainStage.setScene(mainScene2);
+					mainStage.setScene(PlayerScene);
 			}
 		});
 	}
@@ -83,7 +86,7 @@ public class ViewManager {
 	public static int getHeight() {
 		return HEIGHT;
 	}
-	public Stage getMainStage() {
+	public static Stage getMainStage() {
 		return mainStage;
 	}
 	

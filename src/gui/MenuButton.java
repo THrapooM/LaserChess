@@ -10,14 +10,14 @@ import javafx.scene.text.Font;
 
 
 public class MenuButton extends Button{
-	private static int height = 250;
+	private static int height = 158;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private final String INIT_BUTTON_STYLE = "-fx-background-color:linear-gradient(#0d1b3e,#27bba8);";
 	private final String BUTTON_PRESSED_STYLE = "-fx-background-color:linear-gradient(#27bba8, #0d1b3e);";
 	private boolean Clicked = false;
 	public MenuButton(String text) {
 		setText(text); 
-		setLayoutX(387);
+		setLayoutX(100);
 		setPrefWidth(250);
 		setPrefHeight(40);
 		height += 100;

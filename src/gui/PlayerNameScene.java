@@ -1,10 +1,13 @@
 package gui;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javafx.geometry.Insets;
+import View.ViewManager;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -17,21 +20,21 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class ScenePlayer extends VBox{
+public class PlayerNameScene extends VBox{
 	private Label label1,label2,labeltmp1,labeltmp2,tmp1,tmp2;
 	private ArrayList<Label>LabelContainers;
 	private ArrayList<TextField>TextFieldContainers;
 	private TextField p1TextField,p2TextField;
 	private GridPane Table;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
+	private Scene GotoBoardScene;
 	
-	public ScenePlayer() {
+	public PlayerNameScene() {
 		this.setAlignment(Pos.CENTER);
 		LabelContainers = new ArrayList<Label>();
 		TextFieldContainers = new ArrayList<TextField>();
 		
 		Table = new GridPane();
-		Table.setPadding(new Insets(5));
 		
 		label1 = new Label("PLAYER 1 : ");
 		Table.add(label1,0,0);
@@ -54,7 +57,6 @@ public class ScenePlayer extends VBox{
 		Table.setHgap(30);
 		this.getChildren().add(Table);
 		Table = new GridPane();
-		Table.setPadding(new Insets(5));
 		
 		label2 = new Label("PLAYER 2 : ");
 		Table.add(label2,0,0);
@@ -89,12 +91,15 @@ public class ScenePlayer extends VBox{
 			eachLabel.setTextFill(Color.WHITE);
 		}
 		for(TextField eachTextField : TextFieldContainers) {
+			eachTextField.setPrefWidth(500);
+			eachTextField.setMaxWidth(500);
+			eachTextField.setMinWidth(500);
 			eachTextField.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
 			eachTextField.setStyle("-fx-text-inner-color: Black;");
 		}
 	}
 	private void createBackGround() {
-		Image backgroundImage = new Image("/tc.jpg", 1024, 1024, false, false);
+		Image backgroundImage = new Image("/25199.jpg", 1024, 768, false, false);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		this.setBackground(new Background(background));
 	
@@ -103,6 +108,18 @@ public class ScenePlayer extends VBox{
 		
 	}
 	private void createStartButton() {
-		
+		Button StartButton = new Button("Start");
+		this.getChildren().add(StartButton);
+		StartButton.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(p1TextField.getText()!="" && p2TextField.getText()!="") {
+					BoardScene AllBoard = new BoardScene();
+					GotoBoardScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
+					ViewManager.getMainStage().setScene(GotoBoardScene);
+				}
+			}
+		});
 	}
+		
 }

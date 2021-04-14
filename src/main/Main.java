@@ -1,6 +1,6 @@
 package main;
 
-import gui.ViewManager;
+import View.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
