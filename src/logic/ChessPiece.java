@@ -1,8 +1,7 @@
 package logic;
 
-import logic.base.Movable;
 
-public abstract class ChessPiece implements Movable {
+public abstract class ChessPiece{
 	protected int direction;
 	private int x,y;
 	private int team;
@@ -14,11 +13,11 @@ public abstract class ChessPiece implements Movable {
 		this.team = team;
 	}
 
-	@Override
 	public void move(int x,int y) {
 		this.setX(x);
 		this.setY(y);
 	}
+	public abstract int interact(int lserdirection);
 	
 	public int getDirection() {
 		return direction;

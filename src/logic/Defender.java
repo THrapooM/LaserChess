@@ -2,7 +2,7 @@ package logic;
 
 import logic.base.*;
 
-public class Defender extends ChessPiece implements Rotatable,Interactable {
+public class Defender extends ChessPiece implements Rotatable{
 
 	public Defender(int direction, int x, int y, int team) {
 		super(direction, x, y, team);
@@ -14,8 +14,11 @@ public class Defender extends ChessPiece implements Rotatable,Interactable {
 	}
 
 	@Override
-	public int interact() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int interact(int laserDirection) {
+		if(laserDirection == (direction+2)%4) return 4;
+		else {
+			GameManager.chessPieceCaptured(this);
+			return 4;
+		}
 	}
 }

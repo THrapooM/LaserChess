@@ -8,10 +8,16 @@ public class GameManager {
 	private static ArrayList<Rotatable> rotatablePieceList;
 	private static int winnerTeam;
 	private static ChessPiece selectedChessPiece;
-	private static final int moveX[] = {-1,-1,0,1,1,1,0,-1};
-	private static final int moveY[] = {0,1,1,1,0,-1,-1,-1};
-	private static String[] team = {null,null};
+	private static String[] team = new String[2];
 	private static int teamTurn = 0;
+	private static ChessPiece[] laserTurret = new ChessPiece[2];
+	private static ArrayList<int[]> laserPath;
+	
+	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
+	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
+	private static final int[] laserX = {-1,0,1,0};
+	private static final int[] laserY = {0,1,0,-1};
+	private static final String[] laserURL = {};
 	
 	public static void startGame(int boardNumber,String team1,String team2) {
 		chessBoard = StartingBoard.getStartingBoard(boardNumber);
@@ -23,6 +29,8 @@ public class GameManager {
 		team[0] = team1;
 		team[1] = team2;
 		winnerTeam = 0;
+		laserTurret[0] = chessBoard[0][0];
+		laserTurret[1] = chessBoard[7][9];
 	}
 	
 	public static int getTeamTurn() {
@@ -31,11 +39,21 @@ public class GameManager {
 	
 	public static void changeTurn() {
 		teamTurn = teamTurn == 0? 1:0;
+		int tmpx = laserTurret[teamTurn].getX() + laserX[laserTurret[teamTurn].getDirection()];
+		int tmpy = laserTurret[teamTurn].getY() + laserY[laserTurret[teamTurn].getDirection()];
+		int tmpdir = laserTurret[teamTurn].getDirection();
+		while(tmpx >= 0 && tmpx < 8 && tmpy >= 0 && tmpy < 10) {
+			if(chessBoard[tmpx][tmpy] != null) {
+				int newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
+				if(newdir == 4) break;
+				dolaserURL
+			}
+		}
+		doGameOver
 	}
 	
 	public static void kingIsKilled(int loserTeam) {
 		winnerTeam = loserTeam == 1? 2:1;
-		doGameOver
 	}
 	
 	public static void setSelectedChessPiece(ChessPiece selectedChessPiece) {
@@ -83,7 +101,7 @@ public class GameManager {
 		return movablePOS;
 	}
 	
-	public static int getWinnerTeam() {
-		return winnerTeam;
+	public static String getWinnerTeam() {
+		return team[winnerTeam];
 	}
 }
