@@ -4,7 +4,7 @@ public abstract class ChessPiece {
 	protected int direction;
 	private int x,y;
 	
-	public ChessPiece(int drection,int x,int y) {
+	public ChessPiece(int direction,int x,int y) {
 		this.direction = direction;
 		this.x = x;
 		this.y = y;

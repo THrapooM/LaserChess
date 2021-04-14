@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import View.ViewManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,30 +54,27 @@ public class PlayerNameScene extends VBox{
 		LabelContainers.add(tmp1);
 		
 		tmp1.textProperty().bind(p1TextField.textProperty());
-		Table.setVgap(20);
-		Table.setHgap(30);
-		this.getChildren().add(Table);
-		Table = new GridPane();
 		
 		label2 = new Label("PLAYER 2 : ");
-		Table.add(label2,0,0);
+		Table.add(label2,0,2);
 		LabelContainers.add(label2);
 		
 		p2TextField = new TextField();
-		Table.add(p2TextField, 1, 0);
+		Table.add(p2TextField, 1, 2);
 		TextFieldContainers.add(p2TextField);
 	
 		labeltmp2 = new Label("PLAYER 2 NAME : ");
-		Table.add(labeltmp2,0,1);
+		Table.add(labeltmp2,0,3);
 		LabelContainers.add(labeltmp2);
 		
 		tmp2 = new Label();
-		Table.add(tmp2,1,1);
+		Table.add(tmp2,1,3);
 		LabelContainers.add(tmp2);
 		
 		tmp2.textProperty().bind(p2TextField.textProperty());
 		Table.setVgap(20);
 		Table.setHgap(30);
+		Table.setPadding(new Insets(60));
 		
 		this.getChildren().add(Table);
 		setfont();
