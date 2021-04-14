@@ -1,10 +1,17 @@
 package main;
 
-public class Main {
+import gui.ViewManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class Main extends Application{
 
+	public void start(Stage primaryStage) {
+		ViewManager manager = new ViewManager();
+		primaryStage = manager.getMainStage();
+		primaryStage.show();
 	}
-
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
