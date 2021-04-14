@@ -1,13 +1,23 @@
-package gui;
+package logic;
 
-public abstract class ChessPiece {
+import logic.base.Movable;
+
+public abstract class ChessPiece implements Movable {
 	protected int direction;
 	private int x,y;
+	private int team;
 	
-	public ChessPiece(int direction,int x,int y) {
+	public ChessPiece(int direction,int x,int y,int team) {
 		this.direction = direction;
 		this.x = x;
 		this.y = y;
+		this.team = team;
+	}
+
+	@Override
+	public void move(int x,int y) {
+		this.setX(x);
+		this.setY(y);
 	}
 	
 	public int getDirection() {
@@ -24,5 +34,8 @@ public abstract class ChessPiece {
 	}
 	public void setY(int y) {
 		this.y = y;
+	}
+	public int getTeam() {
+		return team;
 	}
 }
