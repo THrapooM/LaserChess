@@ -48,7 +48,7 @@ public class MenuButton extends Button{
 			@Override
 			public void handle(MouseEvent arg0) {
 				setButtonPressedStyle();
-			}
+			}	
 		});
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
