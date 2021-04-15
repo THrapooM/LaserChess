@@ -28,7 +28,7 @@ public class PlayerNameScene extends VBox{
 	private TextField p1TextField,p2TextField;
 	private GridPane Table;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
-	private Scene GotoBoardScene;
+	private Scene BoardPickerScene;
 	
 	public PlayerNameScene() {
 		this.setAlignment(Pos.CENTER);
@@ -80,7 +80,7 @@ public class PlayerNameScene extends VBox{
 		setfont();
 		setSpacing(50);
 		createBackGround();
-		createLogo();
+		ViewManager.createLogo();
 		createStartButton();
 	}
 	private void setfont() {
@@ -106,15 +106,16 @@ public class PlayerNameScene extends VBox{
 		
 	}
 	private void createStartButton() {
-		Button StartButton = new Button("Start");
-		this.getChildren().add(StartButton);
-		StartButton.setOnAction(new EventHandler<ActionEvent>() {
+		Button NEXTButton = new Button("NEXT");
+		NEXTButton.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
+		this.getChildren().add(NEXTButton);
+		NEXTButton.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if(p1TextField.getText()!="" && p2TextField.getText()!="") {
-					BoardScene AllBoard = new BoardScene();
-					GotoBoardScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
-					ViewManager.getMainStage().setScene(GotoBoardScene);
+					CreateBoardPicker AllBoard = new CreateBoardPicker();
+					BoardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
+					ViewManager.getMainStage().setScene(BoardPickerScene);
 				}
 			}
 		});

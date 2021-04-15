@@ -37,7 +37,7 @@ public class ViewManager {
 		PlayerNameScene mainPane2 = new PlayerNameScene();
 		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);		
 	}
-	private void createLogo() {
+	public static void createLogo() {
 	}
 	private void createBackground() {
 		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);
