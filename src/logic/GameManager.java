@@ -9,36 +9,55 @@ public class GameManager {
 	private static int winnerTeam;
 	private static ChessPiece selectedChessPiece;
 	private static String[] team = new String[2];
-	private static int teamTurn = 0;
+	private static int teamTurn = 1;
 	private static ChessPiece[] laserTurret = new ChessPiece[2];
 	private static ArrayList<int[]> laserPath;
+	private static boolean turnIsPlayed = false;
+	private static boolean gameIsOver = false;
 	
+
 	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
 	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
 	private static final int[] laserX = {-1,0,1,0};
 	private static final int[] laserY = {0,1,0,-1};
 	private static final String[] laserURL = {};
 	
-	public static void startGame(int boardNumber,String team1,String team2) {
+	public static void startGame(int boardNumber) {
 		chessBoard = StartingBoard.getStartingBoard(boardNumber);
 		for(int i = 0;i < chessBoard.length;i++) {
 			for(int j = 0;j < chessBoard[i].length;j++) {
 				
 			}
 		}
-		team[0] = team1;
-		team[1] = team2;
 		winnerTeam = 0;
 		laserTurret[0] = chessBoard[0][0];
 		laserTurret[1] = chessBoard[7][9];
+	}
+	
+	public static void setTeamName(String team1,String team2) {
+		team[0] = team1;
+		team[1] = team2;
+	}
+	
+	public static String[] getTeamName() {
+		String[] tmp = {team[0], team[1]};
+		return tmp;
 	}
 	
 	public static int getTeamTurn() {
 		return teamTurn;
 	}
 	
+	public static ChessPiece getChessPiece(int x,int y) {
+		return chessBoard[x][y];
+	}
+
+	public static boolean isTurnPlayed() {
+		return turnIsPlayed;
+	}
+	
 	public static void changeTurn() {
-		teamTurn = teamTurn == 0? 1:0;
+		teamTurn = teamTurn == 1? 2:1;
 		int tmpx = laserTurret[teamTurn].getX() + laserX[laserTurret[teamTurn].getDirection()];
 		int tmpy = laserTurret[teamTurn].getY() + laserY[laserTurret[teamTurn].getDirection()];
 		int tmpdir = laserTurret[teamTurn].getDirection();
@@ -54,6 +73,7 @@ public class GameManager {
 	
 	public static void kingIsKilled(int loserTeam) {
 		winnerTeam = loserTeam == 1? 2:1;
+		gameIsOver = true;
 	}
 	
 	public static void setSelectedChessPiece(ChessPiece selectedChessPiece) {
@@ -71,17 +91,20 @@ public class GameManager {
 		if(chessBoard[x][y] != null) chessBoard[x][y].move(selectedChessPiece.getX(),selectedChessPiece.getY());
 		selectedChessPiece.move(x,y);
 		selectedChessPiece = null;
+		turnIsPlayed = true;
 	}
 	
 	public static void rotate(int direction) {
 		Rotatable tmp = (Rotatable) selectedChessPiece;
 		tmp.rotate(direction);
+		turnIsPlayed = true;
 	}
 	
 	public static void rotateBoard(int direction) {
 		for(int i = 0;i < rotatablePieceList.size();i++) {
 			rotatablePieceList.get(i).rotate(direction);
 		}
+		turnIsPlayed = true;
 	}
 
 	public static ArrayList<int[]> getMovablePOS(){
@@ -102,6 +125,6 @@ public class GameManager {
 	}
 	
 	public static String getWinnerTeam() {
-		return team[winnerTeam];
+		return team[winnerTeam-1];
 	}
 }

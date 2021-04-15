@@ -5,6 +5,8 @@ public abstract class ChessPiece{
 	protected int direction;
 	private int x,y;
 	private int team;
+	protected String name;
+	protected String url;
 	
 	public ChessPiece(int direction,int x,int y,int team) {
 		this.direction = direction;
@@ -36,5 +38,11 @@ public abstract class ChessPiece{
 	}
 	public int getTeam() {
 		return team;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getUrl() {
+		return url;
 	}
 }

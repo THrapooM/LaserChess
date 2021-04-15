@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import logic.GameManager;
 
 public class PlayerNameScene extends VBox{
 	private Label label1,label2,labeltmp1,labeltmp2,tmp1,tmp2;
@@ -113,6 +114,7 @@ public class PlayerNameScene extends VBox{
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if(p1TextField.getText()!="" && p2TextField.getText()!="") {
+					GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
 					CreateBoardPicker AllBoard = new CreateBoardPicker();
 					BoardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
 					ViewManager.getMainStage().setScene(BoardPickerScene);
