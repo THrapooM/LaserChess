@@ -7,7 +7,6 @@ import logic.base.StartingBoard;
 
 public class BoardPane extends GridPane{
 	
-	private BoardCell[][] boardCells = new BoardCell[8][10];
 	public BoardPane() {
 		this.setPrefWidth(1000);
 		this.setPrefHeight(800);

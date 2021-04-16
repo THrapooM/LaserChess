@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import logic.GameManager;
 
@@ -57,9 +58,11 @@ public class CreateBoardPicker extends VBox{
 			@Override
 			public void handle(MouseEvent arg0) {
 				GameManager.startGame(ChoosenBoard.ordinal());
-				BoardPane SelectedBoard = new BoardPane();
-				//System.out.println(SelectedBoard);
-				Scene BoardScene = new Scene(SelectedBoard,ViewManager.getWidth(),ViewManager.getHeight());
+				StackPane stackPane = new StackPane();
+				BoardPane boardPane = new BoardPane();
+				LaserPane laserPane = new LaserPane();
+				stackPane.getChildren().addAll(boardPane,laserPane);
+				Scene BoardScene = new Scene(stackPane,ViewManager.getWidth(),ViewManager.getHeight());
 				ViewManager.getMainStage().setScene(BoardScene);
 				
 			}
