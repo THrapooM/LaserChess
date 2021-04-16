@@ -19,6 +19,7 @@ public class Defender extends ChessPiece implements Rotatable{
 
 	@Override
 	public int interact(int laserDirection) {
+		laserDirection = (laserDirection+2)%4;
 		if(laserDirection == (direction+2)%4) return 4;
 		else {
 			GameManager.chessPieceCaptured(this);

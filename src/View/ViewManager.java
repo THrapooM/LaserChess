@@ -1,27 +1,39 @@
 package View;
 
+import java.util.ArrayList;
+
+import gui.BoardPane;
+import gui.CreateBoardPicker;
+import gui.LaserPane;
 import gui.MenuButton;
 import gui.PlayerNameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import logic.GameManager;
 
 public class ViewManager {
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = 768;
 	private AnchorPane mainPane;
 	private static Stage mainStage;
-	private Scene mainScene,PlayerScene;
+	private static Scene mainScene,PlayerScene,boardPickerScene,gameScene;
+	private static LaserPane laserPane;
+	private static BoardPane boardPane;
+	private static StackPane gamePane;
 	public ViewManager() {
 		initScene1();
-		initScene2();
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		mainStage.setTitle("Laser Chess");
@@ -33,9 +45,36 @@ public class ViewManager {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane,WIDTH,HEIGHT);
 	}
-	private void initScene2() {
+	public static void initScene2() {
 		PlayerNameScene mainPane2 = new PlayerNameScene();
-		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);		
+		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);
+		mainStage.setScene(PlayerScene);
+	}
+	public static void initScene3() {
+		CreateBoardPicker AllBoard = new CreateBoardPicker();
+		boardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
+		ViewManager.getMainStage().setScene(boardPickerScene);
+	}
+	public static void initScene4(int boardNumber) {
+		GameManager.startGame(boardNumber);
+		gamePane = new StackPane();
+		gamePane.setAlignment(Pos.CENTER);
+		boardPane = new BoardPane();
+		laserPane = new LaserPane();
+		gamePane.getChildren().addAll(boardPane,laserPane);
+		Scene BoardScene = new Scene(gamePane,ViewManager.getWidth(),ViewManager.getHeight());
+		ViewManager.getMainStage().setScene(BoardScene);
+		GameManager.changeTurn();
+	}
+	public static void shootLaser(ArrayList<int[]> laserPath) {
+		for(int i = 0 ; i < laserPath.size() ; i++) {
+			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
+			Image image = new Image(url);
+			ImageView imageView = new ImageView(image);
+			imageView.setFitHeight(100);
+			imageView.setFitWidth(100);
+			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);
+		}
 	}
 	public static void createLogo() {
 	}
@@ -60,7 +99,7 @@ public class ViewManager {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-					mainStage.setScene(PlayerScene);
+				initScene2();
 			}
 		});
 	}

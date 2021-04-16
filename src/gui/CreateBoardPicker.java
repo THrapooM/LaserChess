@@ -57,14 +57,7 @@ public class CreateBoardPicker extends VBox{
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				GameManager.startGame(ChoosenBoard.ordinal());
-				StackPane stackPane = new StackPane();
-				BoardPane boardPane = new BoardPane();
-				LaserPane laserPane = new LaserPane();
-				stackPane.getChildren().addAll(boardPane,laserPane);
-				Scene BoardScene = new Scene(stackPane,ViewManager.getWidth(),ViewManager.getHeight());
-				ViewManager.getMainStage().setScene(BoardScene);
-				
+				ViewManager.initScene4(ChoosenBoard.ordinal());
 			}
 		});
 	}

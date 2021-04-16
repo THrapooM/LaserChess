@@ -29,7 +29,6 @@ public class PlayerNameScene extends VBox{
 	private TextField p1TextField,p2TextField;
 	private GridPane Table;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
-	private Scene BoardPickerScene;
 	
 	public PlayerNameScene() {
 		this.setAlignment(Pos.CENTER);
@@ -115,9 +114,7 @@ public class PlayerNameScene extends VBox{
 				// TODO Auto-generated method stub
 				if(p1TextField.getText()!="" && p2TextField.getText()!="") {
 					GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
-					CreateBoardPicker AllBoard = new CreateBoardPicker();
-					BoardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
-					ViewManager.getMainStage().setScene(BoardPickerScene);
+					ViewManager.initScene3();
 				}
 			}
 		});

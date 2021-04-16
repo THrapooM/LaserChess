@@ -19,6 +19,7 @@ public class Switch extends ChessPiece implements Rotatable{
 
 	@Override
 	public int interact(int laserDirection) {
+		laserDirection = (laserDirection+2)%4;
 		int[] mirror1 = {direction,(direction+1)%4};
 		int[] mirror2 = {(direction+2)%4,(direction+3)%4};
 		if(laserDirection == mirror1[0]) return mirror1[1];

@@ -1,6 +1,8 @@
 package logic;
 
 import java.util.ArrayList;
+
+import View.ViewManager;
 import logic.base.*;
 
 public class GameManager {
@@ -57,44 +59,45 @@ public class GameManager {
 	}
 	
 	public static void changeTurn() {
-		teamTurn = teamTurn == 1? 2:1;
-		int tmpx = laserTurret[teamTurn].getX() + laserX[laserTurret[teamTurn].getDirection()];
-		int tmpy = laserTurret[teamTurn].getY() + laserY[laserTurret[teamTurn].getDirection()];
-		int tmpdir = laserTurret[teamTurn].getDirection();
+		int tmpx = laserTurret[teamTurn-1].getX() + laserX[laserTurret[teamTurn-1].getDirection()];
+		int tmpy = laserTurret[teamTurn-1].getY() + laserY[laserTurret[teamTurn-1].getDirection()];
+		int tmpdir = laserTurret[teamTurn-1].getDirection();
 		ArrayList<int[]> laserPath = new ArrayList<int[]>();
 		while(tmpx >= 0 && tmpx < 8 && tmpy >= 0 && tmpy < 10) {
+			int newdir = tmpdir;
 			if(chessBoard[tmpx][tmpy] != null) {
-				int newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
+				newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
 				if(newdir == 4) break;
-				if(tmpdir == newdir) {
-					if(tmpdir%2 == 0) {
-						int[] tmpArray = {1,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}else {
-						int[] tmpArray = {2,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}
-				}else {
-					if((tmpdir == 0 && newdir == 1) || (tmpdir == 1 && tmpdir == 0)) {
-						int[] tmpArray = {3,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}else if((tmpdir == 1 && newdir == 2) || (tmpdir == 2 && newdir == 1)) {
-						int[] tmpArray = {4,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}else if((tmpdir == 2 && newdir == 3) || (tmpdir == 3 && newdir == 2)) {
-						int[] tmpArray = {5,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}else{
-						int[] tmpArray = {6,tmpx,tmpy};
-						laserPath.add(tmpArray);
-					}
-				}
-				tmpdir = newdir;
-				tmpx = tmpx + laserX[tmpdir];
-				tmpy = tmpy + laserY[tmpdir];
 			}
-			
+			if(tmpdir == newdir) {
+				if(tmpdir%2 == 0) {
+					int[] tmpArray = {1,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}else {
+					int[] tmpArray = {2,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}
+			}else {
+				if((tmpdir == 2 && newdir == 1) || (tmpdir == 3 && tmpdir == 0)) {
+					int[] tmpArray = {3,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}else if((tmpdir == 3 && newdir == 2) || (tmpdir == 0 && newdir == 1)) {
+					int[] tmpArray = {4,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}else if((tmpdir == 1 && newdir == 2) || (tmpdir == 0 && newdir == 3)) {
+					int[] tmpArray = {5,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}else{
+					int[] tmpArray = {6,tmpx,tmpy};
+					laserPath.add(tmpArray);
+				}
+			}
+			tmpdir = newdir;
+			tmpx = tmpx + laserX[tmpdir];
+			tmpy = tmpy + laserY[tmpdir];
 		}
+		ViewManager.shootLaser(laserPath);
+		teamTurn = teamTurn == 1? 2:1;
 	}
 	
 	public static void kingIsKilled(int loserTeam) {
