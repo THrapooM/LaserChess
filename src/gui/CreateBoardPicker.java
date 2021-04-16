@@ -51,7 +51,7 @@ public class CreateBoardPicker extends VBox{
 		createStartButton();
 	}
 	private void createStartButton() {
-		Button Next = new Button();
+		Button Next = new Button("Start");
 		this.getChildren().add(Next);
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

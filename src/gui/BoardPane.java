@@ -2,6 +2,7 @@ package gui;
 
 
 import javafx.scene.layout.GridPane;
+import logic.GameManager;
 import logic.base.StartingBoard;
 
 public class BoardPane extends GridPane{
@@ -14,7 +15,7 @@ public class BoardPane extends GridPane{
 		this.setHgap(5);
 		for(int i = 0;i < 8;i++) {
 			for(int j = 0;j < 10;j++) {
-				BoardCell boardcell = new BoardCell(StartingBoard.startingBoard[0][i][j],i,j);
+				BoardCell boardcell = new BoardCell(GameManager.getChessPiece(i, j),i,j);
 				this.add(boardcell, j, i);
 			}
 		}
