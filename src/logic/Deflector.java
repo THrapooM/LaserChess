@@ -7,8 +7,8 @@ public class Deflector extends ChessPiece implements Rotatable {
 	
 	public Deflector(int direction, int x, int y, int team) {
 		super(direction, x, y, team);
-		if(team == 1) this.name = "red_deflectors";
-		else this.name = "blue_deflectors";
+		if(team == 1) this.name = "red_deflector";
+		else this.name = "blue_deflector";
 		this.url = PicInformation.ChessUrl(name);
 	}
 	

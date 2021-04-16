@@ -16,18 +16,22 @@ public class BoardCell extends Pane{
 	private ChessPiece chessPiece;
 	private int x;
 	private int y;
-	//private Crop;
+	public BoardCell(int x,int y) {
+		setPane(x,y);
+	}
 	public BoardCell(ChessPiece chessPiece,int x,int y) {
 		this.chessPiece = chessPiece;
+		setPane(x,y);
+		updatePic();
+	}
+	private void setPane(int x,int y) {
 		this.x = x;
 		this.y = y;
 		this.setPrefWidth(90);
 		this.setPrefHeight(90);
 		this.setPadding(new Insets(5,5,5,5));
 		this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-		updatePic();
 	}
-	
 	public void updateChessPiece() {
 		this.chessPiece = GameManager.getChessPiece(x, y);
 	}
@@ -35,7 +39,7 @@ public class BoardCell extends Pane{
 	public void updatePic() {
 		Image image = new Image(chessPiece.getUrl());
 		ImageView imageView = new  ImageView(image);
-		imageView.setRotate(90*chessPiece.getDirection());
+		imageView.setRotate(imageView.getRotate() + 90*chessPiece.getDirection());
 		image = imageView.getImage();
 		BackgroundFill bgFill = new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY);
 		BackgroundFill[] bgFillA = {bgFill};

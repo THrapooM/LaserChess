@@ -38,7 +38,6 @@ public class CreateBoardPicker extends VBox{
 					}
 					BoardToPick.setIsBoardChoosen(true);
 					ChoosenBoard = BoardToPick.getBoardpic();
-					System.out.println(ChoosenBoard);
 				}
 				
 			});
@@ -55,11 +54,11 @@ public class CreateBoardPicker extends VBox{
 		Button Next = new Button();
 		this.getChildren().add(Next);
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent arg0) {
 				GameManager.startGame(ChoosenBoard.ordinal());
 				BoardPane SelectedBoard = new BoardPane();
+				//System.out.println(SelectedBoard);
 				Scene BoardScene = new Scene(SelectedBoard,ViewManager.getWidth(),ViewManager.getHeight());
 				ViewManager.getMainStage().setScene(BoardScene);
 				
