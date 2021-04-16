@@ -61,14 +61,40 @@ public class GameManager {
 		int tmpx = laserTurret[teamTurn].getX() + laserX[laserTurret[teamTurn].getDirection()];
 		int tmpy = laserTurret[teamTurn].getY() + laserY[laserTurret[teamTurn].getDirection()];
 		int tmpdir = laserTurret[teamTurn].getDirection();
+		ArrayList<int[]> laserPath = new ArrayList<int[]>();
 		while(tmpx >= 0 && tmpx < 8 && tmpy >= 0 && tmpy < 10) {
 			if(chessBoard[tmpx][tmpy] != null) {
 				int newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
 				if(newdir == 4) break;
-				dolaserURL
+				if(tmpdir == newdir) {
+					if(tmpdir%2 == 0) {
+						int[] tmpArray = {1,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}else {
+						int[] tmpArray = {2,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}
+				}else {
+					if((tmpdir == 0 && newdir == 1) || (tmpdir == 1 && tmpdir == 0)) {
+						int[] tmpArray = {3,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}else if((tmpdir == 1 && newdir == 2) || (tmpdir == 2 && newdir == 1)) {
+						int[] tmpArray = {4,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}else if((tmpdir == 2 && newdir == 3) || (tmpdir == 3 && newdir == 2)) {
+						int[] tmpArray = {5,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}else{
+						int[] tmpArray = {6,tmpx,tmpy};
+						laserPath.add(tmpArray);
+					}
+				}
+				tmpdir = newdir;
+				tmpx = tmpx + laserX[tmpdir];
+				tmpy = tmpy + laserY[tmpdir];
 			}
+			
 		}
-		doGameOver
 	}
 	
 	public static void kingIsKilled(int loserTeam) {
