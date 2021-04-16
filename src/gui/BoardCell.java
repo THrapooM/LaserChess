@@ -16,9 +16,6 @@ public class BoardCell extends Pane{
 	private ChessPiece chessPiece;
 	private int x;
 	private int y;
-	public BoardCell(int x,int y) {
-		setPane(x,y);
-	}
 	public BoardCell(ChessPiece chessPiece,int x,int y) {
 		this.chessPiece = chessPiece;
 		setPane(x,y);
@@ -37,16 +34,16 @@ public class BoardCell extends Pane{
 	}
 	
 	public void updatePic() {
-		Image image = new Image(chessPiece.getUrl());
-		ImageView imageView = new  ImageView(image);
-		imageView.setRotate(imageView.getRotate() + 90*chessPiece.getDirection());
-		image = imageView.getImage();
-		BackgroundFill bgFill = new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY);
-		BackgroundFill[] bgFillA = {bgFill};
-		BackgroundSize bgSize = new BackgroundSize(90,90,false,false,false,false);
-		BackgroundImage bgImg = new BackgroundImage(image, null, null, null, bgSize);
-		BackgroundImage[] bgImgA = {bgImg};
-		this.setBackground(new Background(bgFillA,bgImgA));
+		if(chessPiece != null) {
+			Image image = new Image(chessPiece.getUrl());
+			ImageView imageView = new  ImageView(image);
+			imageView.setRotate(imageView.getRotate() + 90*chessPiece.getDirection());
+			imageView.setFitWidth(90);
+			imageView.setFitHeight(90);
+			this.getChildren().add(imageView);
+		}else {
+			this.getChildren().clear();
+		}
 	}
 	
 	public void unhighlight() {

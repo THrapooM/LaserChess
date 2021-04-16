@@ -14,17 +14,10 @@ public class BoardPane extends GridPane{
 		this.setHgap(5);
 		for(int i = 0;i < 8;i++) {
 			for(int j = 0;j < 10;j++) {
-				if(StartingBoard.startingBoard[0][i][j]!=null) {
-					BoardCell boardcell = new BoardCell(StartingBoard.startingBoard[0][i][j],i,j);
-					this.add(boardcell, j, i);
-				}
-				else {
-					BoardCell boardcell = new BoardCell(i,j);
-					this.add(boardcell, j, i);
-				}
+				BoardCell boardcell = new BoardCell(StartingBoard.startingBoard[0][i][j],i,j);
+				this.add(boardcell, j, i);
 			}
 		}
 	}
-	
 }
 
