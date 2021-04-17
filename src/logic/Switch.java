@@ -22,6 +22,8 @@ public class Switch extends ChessPiece implements Rotatable{
 		laserDirection = (laserDirection+2)%4;
 		int[] mirror1 = {direction,(direction+1)%4};
 		int[] mirror2 = {(direction+2)%4,(direction+3)%4};
+		System.out.printf("%d %d\n",mirror1[0],mirror1[1]);
+		System.out.printf("%d %d\n",mirror2[0],mirror2[1]);
 		if(laserDirection == mirror1[0]) return mirror1[1];
 		else if(laserDirection == mirror1[1]) return mirror1[0];
 		else if(laserDirection == mirror2[0]) return mirror2[1];

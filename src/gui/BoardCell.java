@@ -26,7 +26,7 @@ public class BoardCell extends Pane{
 		this.y = y;
 		this.setPrefWidth(95);
 		this.setPrefHeight(95);
-		this.setPadding(new Insets(5,5,5,5));
+		this.setPadding(new Insets(0));
 		this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 	public void updateChessPiece() {

@@ -78,7 +78,7 @@ public class GameManager {
 					laserPath.add(tmpArray);
 				}
 			}else {
-				if((tmpdir == 2 && newdir == 1) || (tmpdir == 3 && tmpdir == 0)) {
+				if((tmpdir == 2 && newdir == 1) || (tmpdir == 3 && newdir == 0)) {
 					int[] tmpArray = {3,tmpx,tmpy};
 					laserPath.add(tmpArray);
 				}else if((tmpdir == 3 && newdir == 2) || (tmpdir == 0 && newdir == 1)) {
@@ -139,6 +139,7 @@ public class GameManager {
 	public static ArrayList<int[]> getMovablePOS(){
 		ArrayList<int[]> movablePOS = new ArrayList<int[]>();
 		for(int i = 0;i < 8;i++) {
+			if(selectedChessPiece instanceof LaserTower) break;
 			int tmpx = selectedChessPiece.getX() + moveX[i];
 			int tmpy = selectedChessPiece.getY() + moveY[i];
 			if(tmpx >= 0 && tmpx <= 7 && tmpy >= 0 && tmpy <= 9) {
