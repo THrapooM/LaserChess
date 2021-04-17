@@ -2,11 +2,14 @@ package View;
 
 import java.util.ArrayList;
 
+
 import gui.BoardPane;
+import gui.ButtonController;
 import gui.CreateBoardPicker;
 import gui.LaserPane;
 import gui.MenuButton;
 import gui.PlayerNameScene;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,12 +19,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.GameManager;
+import java.util.concurrent.*;
 
 public class ViewManager {
 	private static final int WIDTH = 1024;
@@ -32,6 +42,7 @@ public class ViewManager {
 	private static LaserPane laserPane;
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
+	private static ButtonController buttonController;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -57,16 +68,24 @@ public class ViewManager {
 	}
 	public static void initScene4(int boardNumber) {
 		GameManager.startGame(boardNumber);
+		VBox vBox = new VBox();
+		buttonController = new ButtonController();
 		gamePane = new StackPane();
+		gamePane.setPrefSize(800, 1000);
 		gamePane.setAlignment(Pos.CENTER);
 		boardPane = new BoardPane();
 		laserPane = new LaserPane();
 		gamePane.getChildren().addAll(boardPane,laserPane);
-		Scene BoardScene = new Scene(gamePane,ViewManager.getWidth(),ViewManager.getHeight());
+		vBox.getChildren().addAll(gamePane,buttonController);
+		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
+		System.out.println("main stage on");
+		mainStage.setHeight(900);
+		mainStage.setWidth(1100);
 		GameManager.changeTurn();
 	}
-	public static void shootLaser(ArrayList<int[]> laserPath) {
+	public static void shootLaser(ArrayList<int[]> laserPath){
+		System.out.println("shootLaser");
 		for(int i = 0 ; i < laserPath.size() ; i++) {
 			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
 			Image image = new Image(url);
@@ -74,6 +93,8 @@ public class ViewManager {
 			imageView.setFitHeight(100);
 			imageView.setFitWidth(100);
 			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);
+			PauseTransition pause = new PauseTransition(Duration.seconds(1));
+			pause.pause();
 		}
 	}
 	public static void createLogo() {

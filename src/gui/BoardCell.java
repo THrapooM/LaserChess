@@ -24,9 +24,8 @@ public class BoardCell extends Pane{
 	private void setPane(int x,int y) {
 		this.x = x;
 		this.y = y;
-		this.setPrefWidth(95);
-		this.setPrefHeight(95);
-		this.setPadding(new Insets(0));
+		this.setPrefWidth(90);
+		this.setPrefHeight(90);
 		this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 	public void updateChessPiece() {
@@ -38,8 +37,8 @@ public class BoardCell extends Pane{
 			Image image = new Image(chessPiece.getUrl());
 			ImageView imageView = new  ImageView(image);
 			imageView.setRotate(imageView.getRotate() + 90*chessPiece.getDirection());
-			imageView.setFitWidth(95);
-			imageView.setFitHeight(95);
+			imageView.setFitWidth(90);
+			imageView.setFitHeight(90);
 			this.getChildren().add(imageView);
 		}else {
 			this.getChildren().clear();
