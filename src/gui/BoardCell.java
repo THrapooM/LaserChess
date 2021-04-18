@@ -10,8 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -37,12 +35,11 @@ public class BoardCell extends Pane{
 			});
 	}
 	public void onClickHandler() {
-		if(this.chessPiece!=null) {
+		if(this.chessPiece!=null && GameManager.getTeamTurn() == chessPiece.getTeam()) {
 			if(ishighlight) {
 				GameManager.move(getX(),getY());
 				ViewManager.unhighlight();
 				GameManager.setSelectedChessPiece(null);
-				GameManager.changeTurn();
 			}
 			else {
 				GameManager.setSelectedChessPiece(chessPiece);
@@ -54,9 +51,8 @@ public class BoardCell extends Pane{
 		else {
 			if(ishighlight) {
 				GameManager.move(x,y);
-				ViewManager.unhighlight();
-				GameManager.changeTurn();
 				GameManager.setSelectedChessPiece(null);
+				ViewManager.unhighlight();
 			}
 			else {
 				ViewManager.unhighlight();
@@ -82,6 +78,7 @@ public class BoardCell extends Pane{
 	}
 	
 	public void updatePic() {
+		this.getChildren().clear();
 		if(chessPiece != null) {
 			Image image = new Image(chessPiece.getUrl());
 			ImageView imageView = new  ImageView(image);
@@ -89,8 +86,6 @@ public class BoardCell extends Pane{
 			imageView.setFitWidth(90);
 			imageView.setFitHeight(90);
 			this.getChildren().add(imageView);
-		}else {
-			this.getChildren().clear();
 		}
 	}
 	
@@ -100,7 +95,7 @@ public class BoardCell extends Pane{
 	}
 	
 	public void highlight() {
-		this.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 		ishighlight = true;
 	}
 }

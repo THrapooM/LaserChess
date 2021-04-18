@@ -16,9 +16,6 @@ public class BoardPicker extends VBox{
 	private BoardPic boardpic;
 	
 	private boolean isCircleChoosen;
-	public BoardPicker() {
-		ViewManager.createLogo();
-	}
 	public BoardPicker(BoardPic Board) {
 		this.setAlignment(Pos.CENTER);
 		isCircleChoosen = false;

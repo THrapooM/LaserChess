@@ -2,7 +2,6 @@ package View;
 
 import java.util.ArrayList;
 
-import gui.BoardCell;
 import gui.BoardPane;
 import gui.ButtonController;
 import gui.CreateBoardPicker;
@@ -12,27 +11,19 @@ import gui.PlayerNameScene;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import logic.ChessPiece;
 import logic.GameManager;
 
 public class ViewManager {
@@ -45,7 +36,6 @@ public class ViewManager {
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
-	private static boolean highlight = false;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -53,7 +43,6 @@ public class ViewManager {
 		mainStage.setTitle("Laser Chess");
 		createBackground();
 		createButtons();
-		createLogo();
 	}
 	private void initScene1() {
 		mainPane = new AnchorPane();
@@ -85,17 +74,24 @@ public class ViewManager {
 		ViewManager.getMainStage().setScene(BoardScene);
 		mainStage.setHeight(900);
 		mainStage.setWidth(1100);
-		GameManager.changeTurn();
 	}
 	public static void highlight(ArrayList<int[]>cell) {
 		for(int i = 0 ; i < cell.size(); i++) {
-			boardPane.getBroadCell(cell.get(i)[0],cell.get(i)[1]).highlight();
+			boardPane.getBoardCell(cell.get(i)[0],cell.get(i)[1]).highlight();
 		}
 	}
 	public static void unhighlight() {
 		for(int i = 0 ; i < 8 ;i++) {
 			for(int j = 0 ; j < 10 ; j++) {
-				boardPane.getBroadCell(i,j).unhighlight();
+				boardPane.getBoardCell(i,j).unhighlight();
+			}		
+		}
+	}
+	public static void updateBoard() {
+		for(int i = 0 ; i < 8 ;i++) {
+			for(int j = 0 ; j < 10 ; j++) {
+				boardPane.getBoardCell(i,j).updateChessPiece();
+				boardPane.getBoardCell(i,j).updatePic();
 			}		
 		}
 	}
@@ -111,8 +107,6 @@ public class ViewManager {
 			PauseTransition pause = new PauseTransition(Duration.seconds(1));
 			pause.pause();
 		}
-	}
-	public static void createLogo() {
 	}
 	private void createBackground() {
 		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);

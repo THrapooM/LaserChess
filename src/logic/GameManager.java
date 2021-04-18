@@ -14,7 +14,6 @@ public class GameManager {
 	private static int teamTurn = 1;
 	private static ChessPiece[] laserTurret = new ChessPiece[2];
 	private static ArrayList<int[]> laserPath;
-	private static boolean turnIsPlayed = false;
 	private static boolean gameIsOver = false;
 	
 
@@ -54,10 +53,6 @@ public class GameManager {
 		return chessBoard[x][y];
 	}
 
-	public static boolean isTurnPlayed() {
-		return turnIsPlayed;
-	}
-	
 	public static void changeTurn() {
 		int tmpx = laserTurret[teamTurn-1].getX() + laserX[laserTurret[teamTurn-1].getDirection()];
 		int tmpy = laserTurret[teamTurn-1].getY() + laserY[laserTurret[teamTurn-1].getDirection()];
@@ -119,21 +114,23 @@ public class GameManager {
 		chessBoard[selectedChessPiece.getX()][selectedChessPiece.getY()] = tmp;
 		if(chessBoard[x][y] != null) chessBoard[x][y].move(selectedChessPiece.getX(),selectedChessPiece.getY());
 		selectedChessPiece.move(x,y);
-		selectedChessPiece = null;
-		turnIsPlayed = true;
+		ViewManager.updateBoard();
+		changeTurn();
 	}
 	
 	public static void rotate(int direction) {
 		Rotatable tmp = (Rotatable) selectedChessPiece;
 		tmp.rotate(direction);
-		turnIsPlayed = true;
+		ViewManager.updateBoard();
+		changeTurn();
 	}
 	
 	public static void rotateBoard(int direction) {
 		for(int i = 0;i < rotatablePieceList.size();i++) {
 			rotatablePieceList.get(i).rotate(direction);
 		}
-		turnIsPlayed = true;
+		ViewManager.updateBoard();
+		changeTurn();
 	}
 
 	public static ArrayList<int[]> getMovablePOS(){
@@ -143,8 +140,8 @@ public class GameManager {
 			int tmpx = selectedChessPiece.getX() + moveX[i];
 			int tmpy = selectedChessPiece.getY() + moveY[i];
 			if(tmpx >= 0 && tmpx <= 7 && tmpy >= 0 && tmpy <= 9) {
-				if(!(selectedChessPiece instanceof Switch) && chessBoard != null) continue;
-				if(chessBoard[tmpx][tmpy] instanceof King || chessBoard[tmpx][tmpy] instanceof Switch) continue;
+				if(!(selectedChessPiece instanceof Switch) && chessBoard[tmpx][tmpy] != null) continue;
+				if(chessBoard[tmpx][tmpy] instanceof King || chessBoard[tmpx][tmpy] instanceof Switch || chessBoard[tmpx][tmpy] instanceof LaserTower) continue;
 				if(selectedChessPiece.getTeam() == 1 && (tmpy == 9 || (tmpy == 8 && (tmpx == 0 || tmpx == 7)))) continue;
 				if(selectedChessPiece.getTeam() == 2 && (tmpy == 0 || (tmpy == 1 && (tmpx == 0 || tmpx == 7)))) continue;
 				int[] tmpPOS = {tmpx,tmpy};
@@ -176,10 +173,6 @@ public class GameManager {
 
 	public static ArrayList<int[]> getLaserPath() {
 		return laserPath;
-	}
-
-	public static boolean isTurnIsPlayed() {
-		return turnIsPlayed;
 	}
 
 	public static boolean isGameIsOver() {

@@ -80,7 +80,6 @@ public class PlayerNameScene extends VBox{
 		setfont();
 		setSpacing(50);
 		createBackGround();
-		ViewManager.createLogo();
 		createStartButton();
 	}
 	private void setfont() {
