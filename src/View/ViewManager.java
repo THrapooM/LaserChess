@@ -2,7 +2,7 @@ package View;
 
 import java.util.ArrayList;
 
-
+import gui.BoardCell;
 import gui.BoardPane;
 import gui.ButtonController;
 import gui.CreateBoardPicker;
@@ -15,8 +15,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -30,8 +32,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.ChessPiece;
 import logic.GameManager;
-import java.util.concurrent.*;
 
 public class ViewManager {
 	private static final int WIDTH = 1024;
@@ -43,6 +45,7 @@ public class ViewManager {
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
+	private static boolean highlight = false;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -75,14 +78,26 @@ public class ViewManager {
 		gamePane.setAlignment(Pos.CENTER);
 		boardPane = new BoardPane();
 		laserPane = new LaserPane();
-		gamePane.getChildren().addAll(boardPane,laserPane);
+		gamePane.getChildren().addAll(boardPane);
+		//addEventHandler();
 		vBox.getChildren().addAll(gamePane,buttonController);
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
-		System.out.println("main stage on");
 		mainStage.setHeight(900);
 		mainStage.setWidth(1100);
 		GameManager.changeTurn();
+	}
+	public static void highlight(ArrayList<int[]>cell) {
+		for(int i = 0 ; i < cell.size(); i++) {
+			boardPane.getBroadCell(cell.get(i)[0],cell.get(i)[1]).highlight();
+		}
+	}
+	public static void unhighlight() {
+		for(int i = 0 ; i < 8 ;i++) {
+			for(int j = 0 ; j < 10 ; j++) {
+				boardPane.getBroadCell(i,j).unhighlight();
+			}		
+		}
 	}
 	public static void shootLaser(ArrayList<int[]> laserPath){
 		System.out.println("shootLaser");

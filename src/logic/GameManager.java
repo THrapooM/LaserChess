@@ -154,6 +154,58 @@ public class GameManager {
 		return movablePOS;
 	}
 	
+	public static ChessPiece[][] getChessBoard() {
+		return chessBoard;
+	}
+
+	public static ArrayList<Rotatable> getRotatablePieceList() {
+		return rotatablePieceList;
+	}
+
+	public static ChessPiece getSelectedChessPiece() {
+		return selectedChessPiece;
+	}
+
+	public static String[] getTeam() {
+		return team;
+	}
+
+	public static ChessPiece[] getLaserTurret() {
+		return laserTurret;
+	}
+
+	public static ArrayList<int[]> getLaserPath() {
+		return laserPath;
+	}
+
+	public static boolean isTurnIsPlayed() {
+		return turnIsPlayed;
+	}
+
+	public static boolean isGameIsOver() {
+		return gameIsOver;
+	}
+
+	public static int[] getMovex() {
+		return moveX;
+	}
+
+	public static int[] getMovey() {
+		return moveY;
+	}
+
+	public static int[] getLaserx() {
+		return laserX;
+	}
+
+	public static int[] getLasery() {
+		return laserY;
+	}
+
+	public static String[] getLaserurl() {
+		return laserURL;
+	}
+
 	public static String getWinnerTeam() {
 		return team[winnerTeam-1];
 	}
