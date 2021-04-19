@@ -129,8 +129,10 @@ public class GameManager {
 	}
 	
 	public static void rotate(int direction) {
+//	bug
 		Rotatable tmp = (Rotatable) selectedChessPiece;
 		tmp.rotate(direction);
+//		GameManager.getSelectedChessPiece().setDirection(direction);
 		ViewManager.updateBoard();
 		changeTurn();
 	}

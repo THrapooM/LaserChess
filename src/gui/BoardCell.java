@@ -31,7 +31,6 @@ public class BoardCell extends Pane{
 						
 						onClickHandler();
 					}
-						// TODO fill in this method					}
 			});
 	}
 	public void onClickHandler() {
@@ -39,16 +38,19 @@ public class BoardCell extends Pane{
 			if(ishighlight) {
 				GameManager.move(getX(),getY());
 				ViewManager.unhighlight();
+				ButtonController.resetstyle();
 				GameManager.setSelectedChessPiece(null);
 			}
 			else {
 				GameManager.setSelectedChessPiece(chessPiece);
+				ButtonController.setstyle();
 				ArrayList<int[]> getMove = GameManager.getMovablePOS();
 				ViewManager.unhighlight();
 				ViewManager.highlight(getMove);
 			}
 		}
 		else {
+			ButtonController.resetstyle();
 			if(ishighlight) {
 				GameManager.move(x,y);
 				GameManager.setSelectedChessPiece(null);
@@ -82,7 +84,7 @@ public class BoardCell extends Pane{
 		if(chessPiece != null) {
 			Image image = new Image(chessPiece.getUrl());
 			ImageView imageView = new  ImageView(image);
-			imageView.setRotate(imageView.getRotate() + 90*chessPiece.getDirection());
+			imageView.setRotate(90*chessPiece.getDirection());
 			imageView.setFitWidth(90);
 			imageView.setFitHeight(90);
 			this.getChildren().add(imageView);

@@ -96,7 +96,7 @@ public class ViewManager {
 		}
 	}
 	public static void shootLaser(ArrayList<int[]> laserPath){
-		System.out.println("shootLaser");
+		//System.out.println("shootLaser");
 		for(int i = 0 ; i < laserPath.size() ; i++) {
 			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
 			Image image = new Image(url);
