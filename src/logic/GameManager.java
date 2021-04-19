@@ -106,6 +106,7 @@ public class GameManager {
 	
 	public static void chessPieceCaptured(ChessPiece capturedChessPiece) {
 		chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
+		ViewManager.updateBoard();
 	}
 	
 	public static void move(int x1,int y1) {

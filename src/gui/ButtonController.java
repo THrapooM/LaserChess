@@ -44,12 +44,7 @@ public class ButtonController extends HBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				if(GameManager.getSelectedChessPiece()!=null) {
-					int nowdir = GameManager.getSelectedChessPiece().getDirection();
-					int afterrotatedir = (nowdir + 3) % 4 ;
-					if(GameManager.getSelectedChessPiece() instanceof Switch) 
-						afterrotatedir = (nowdir + 1) % 2;
-					GameManager.getSelectedChessPiece().setDirection(afterrotatedir);
-					GameManager.rotate(afterrotatedir);
+					GameManager.rotate(3);
 					GameManager.setSelectedChessPiece(null);
 					resetstyle();
 					ViewManager.unhighlight();
@@ -61,12 +56,7 @@ public class ButtonController extends HBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				if(GameManager.getSelectedChessPiece()!=null) {
-					int nowdir = GameManager.getSelectedChessPiece().getDirection();
-					int afterrotatedir = (nowdir + 1) % 4 ;
-					if(GameManager.getSelectedChessPiece() instanceof Switch) 
-						afterrotatedir = (nowdir + 1) % 2;
-					GameManager.getSelectedChessPiece().setDirection(afterrotatedir);
-					GameManager.rotate(afterrotatedir);
+					GameManager.rotate(1);
 					GameManager.setSelectedChessPiece(null);
 					resetstyle();
 					ViewManager.unhighlight();
