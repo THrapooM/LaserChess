@@ -108,12 +108,22 @@ public class GameManager {
 		chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
 	}
 	
-	public static void move(int x,int y) {
-		ChessPiece tmp = chessBoard[x][y];
-		chessBoard[x][y] = selectedChessPiece;
-		chessBoard[selectedChessPiece.getX()][selectedChessPiece.getY()] = tmp;
-		if(chessBoard[x][y] != null) chessBoard[x][y].move(selectedChessPiece.getX(),selectedChessPiece.getY());
-		selectedChessPiece.move(x,y);
+	public static void move(int x1,int y1) {
+		ChessPiece tmp = null;
+		int x2 = selectedChessPiece.getX();
+		int y2 = selectedChessPiece.getY();
+		if(chessBoard[x1][y1] != null) {
+			try {
+				tmp = (ChessPiece) chessBoard[x1][y1].clone();
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		if(tmp != null) tmp.move(x2,y2);
+		selectedChessPiece.move(x1,y1);
+		chessBoard[x1][y1] = selectedChessPiece;
+		chessBoard[x2][y2] = tmp;
 		ViewManager.updateBoard();
 		changeTurn();
 	}

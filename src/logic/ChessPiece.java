@@ -1,7 +1,7 @@
 package logic;
 
 
-public abstract class ChessPiece{
+public abstract class ChessPiece implements Cloneable{
 	protected int direction;
 	private int x,y;
 	private int team;
@@ -14,6 +14,10 @@ public abstract class ChessPiece{
 		this.y = y;
 		this.team = team;
 	}
+	public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
 
 	public void move(int x,int y) {
 		this.setX(x);
