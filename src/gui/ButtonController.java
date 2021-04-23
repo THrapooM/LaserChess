@@ -40,7 +40,6 @@ public class ButtonController extends HBox{
 	}
 	private void createEventHandler() {
 		rotateLeftButton.setOnAction(new EventHandler<ActionEvent>() {
-			
 			@Override
 			public void handle(ActionEvent arg0) {
 				if(GameManager.getSelectedChessPiece()!=null) {
@@ -51,8 +50,8 @@ public class ButtonController extends HBox{
 				}
 			}
 		});
+		
 		rotateRightButton.setOnAction(new EventHandler<ActionEvent>() {
-			
 			@Override
 			public void handle(ActionEvent arg0) {
 				if(GameManager.getSelectedChessPiece()!=null) {

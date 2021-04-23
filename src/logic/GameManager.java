@@ -16,7 +16,6 @@ public class GameManager {
 	private static ArrayList<int[]> laserPath;
 	private static boolean gameIsOver = false;
 	
-
 	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
 	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
 	private static final int[] laserX = {-1,0,1,0};
@@ -130,10 +129,8 @@ public class GameManager {
 	}
 	
 	public static void rotate(int direction) {
-//	bug
 		Rotatable tmp = (Rotatable) selectedChessPiece;
 		tmp.rotate(direction);
-//		GameManager.getSelectedChessPiece().setDirection(direction);
 		ViewManager.updateBoard();
 		changeTurn();
 	}

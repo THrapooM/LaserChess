@@ -5,16 +5,21 @@ import java.util.ArrayList;
 import gui.BoardPane;
 import gui.ButtonController;
 import gui.CreateBoardPicker;
+import gui.LaserChessSubScene;
 import gui.LaserPane;
 import gui.MenuButton;
 import gui.PlayerNameScene;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -36,13 +41,16 @@ public class ViewManager {
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
+	private LaserChessSubScene HowToPlaySubScene,CreditsSubScene;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		mainStage.setTitle("Laser Chess");
 		createBackground();
+		createSubScene();
 		createButtons();
+		createlogo();
 	}
 	private void initScene1() {
 		mainPane = new AnchorPane();
@@ -68,12 +76,16 @@ public class ViewManager {
 		boardPane = new BoardPane();
 		laserPane = new LaserPane();
 		gamePane.getChildren().addAll(boardPane);
-		//addEventHandler();
 		vBox.getChildren().addAll(gamePane,buttonController);
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
 		mainStage.setHeight(900);
 		mainStage.setWidth(1100);
+	}
+	private void createSubScene() {
+		HowToPlaySubScene = new LaserChessSubScene();
+		CreditsSubScene = new LaserChessSubScene();
+		mainPane.getChildren().addAll(HowToPlaySubScene,CreditsSubScene);
 	}
 	public static void highlight(ArrayList<int[]>cell) {
 		for(int i = 0 ; i < cell.size(); i++) {
@@ -96,16 +108,15 @@ public class ViewManager {
 		}
 	}
 	public static void shootLaser(ArrayList<int[]> laserPath){
-		//System.out.println("shootLaser");
+		
+		//gamePane.getChildren().addAll(laserPane);
 		for(int i = 0 ; i < laserPath.size() ; i++) {
 			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
 			Image image = new Image(url);
 			ImageView imageView = new ImageView(image);
 			imageView.setFitHeight(100);
 			imageView.setFitWidth(100);
-			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);
-			PauseTransition pause = new PauseTransition(Duration.seconds(1));
-			pause.pause();
+			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);					
 		}
 	}
 	private void createBackground() {
@@ -121,34 +132,56 @@ public class ViewManager {
 	}
 	
 	private void createPlayButton() {
-		MenuButton playButton = new MenuButton("PLAY");
+		MenuButton playButton = new MenuButton("/PLAYbutton.png");
 		mainPane.getChildren().add(playButton);
 		
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				initScene2();
 			}
 		});
 	}
 	
 	private void createHowToPlayButton() {
-		MenuButton HowToPlayButton = new MenuButton("HOW TO PLAY");
+		MenuButton HowToPlayButton = new MenuButton("/HOWTOPLAYbutton.png");
 		mainPane.getChildren().add(HowToPlayButton);
+		HowToPlayButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	private void createCreditsButton(){
-		MenuButton CreditsButton = new MenuButton("CREDITS");
+		MenuButton CreditsButton = new MenuButton("/CREDITSbutton.png");
 		mainPane.getChildren().add(CreditsButton);
 	}
 	
 	private void createExitButton() {
-		MenuButton ExitButton = new MenuButton("EXIT");
+		MenuButton ExitButton = new MenuButton("/EXITbutton.png");
 		mainPane.getChildren().add(ExitButton);
 	}
-	
+	private void createlogo() {
+		ImageView logo= new ImageView("/LASER_CHESS_logo.png");
+		logo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			
+			public void handle(MouseEvent arg0) {
+				logo.setEffect(new Glow(0.4));
+			}
+		});
+		logo.setOnMouseExited(new EventHandler<MouseEvent>() {
+			
+			public void handle(MouseEvent arg0) {
+				logo.setEffect(null);
+			}
+		});
+		mainPane.getChildren().add(logo);
+	}
 	public static int getWidth() {
 		return WIDTH;
 	}

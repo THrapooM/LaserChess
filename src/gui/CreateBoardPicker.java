@@ -5,6 +5,7 @@ import java.util.List;
 
 import View.ViewManager;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -43,9 +44,11 @@ public class CreateBoardPicker extends VBox{
 				
 			});
 			if(count==3) {
+				tmpBox.setAlignment(Pos.CENTER);
 				this.getChildren().add(tmpBox);		
 				tmpBox = new HBox();
 				tmpBox.setSpacing(60);
+				tmpBox.setAlignment(Pos.CENTER);
 			}
 		}
 		this.getChildren().add(tmpBox);
