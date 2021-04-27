@@ -9,6 +9,7 @@ import gui.LaserChessSubScene;
 import gui.LaserPane;
 import gui.MenuButton;
 import gui.PlayerNameScene;
+import gui.TokenGuide;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,12 +38,12 @@ public class ViewManager {
 	private static final int HEIGHT = 768;
 	private AnchorPane mainPane;
 	private static Stage mainStage;
-	private static Scene mainScene,PlayerScene,boardPickerScene,gameScene;
+	private static Scene mainScene,PlayerScene,boardPickerScene;
 	private static LaserPane laserPane;
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
-	private LaserChessSubScene HowToPlaySubScene,CreditsSubScene;
+	private LaserChessSubScene HowToPlaySubScene,CreditsSubScene,SceneToHide;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -87,6 +89,13 @@ public class ViewManager {
 		CreditsSubScene = new LaserChessSubScene();
 		mainPane.getChildren().addAll(HowToPlaySubScene,CreditsSubScene);
 	}
+	private void showSubScene(LaserChessSubScene subScene) {
+		if(SceneToHide!=null) {
+			SceneToHide.moveSubScene();
+		}
+		subScene.moveSubScene();
+		SceneToHide = subScene;
+	}
 	public static void highlight(ArrayList<int[]>cell) {
 		for(int i = 0 ; i < cell.size(); i++) {
 			boardPane.getBoardCell(cell.get(i)[0],cell.get(i)[1]).highlight();
@@ -109,14 +118,14 @@ public class ViewManager {
 	}
 	public static void shootLaser(ArrayList<int[]> laserPath){
 		
-		//gamePane.getChildren().addAll(laserPane);
 		for(int i = 0 ; i < laserPath.size() ; i++) {
+			System.out.println(laserPath.get(i));
 			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
 			Image image = new Image(url);
 			ImageView imageView = new ImageView(image);
 			imageView.setFitHeight(100);
 			imageView.setFitWidth(100);
-			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);					
+			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);
 		}
 	}
 	private void createBackground() {
@@ -152,7 +161,9 @@ public class ViewManager {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				showSubScene(HowToPlaySubScene);
+				TokenGuide tokenguide = new TokenGuide();
+				HowToPlaySubScene.getPane().getChildren().add(tokenguide);
 			}
 		});
 	}
@@ -160,11 +171,27 @@ public class ViewManager {
 	private void createCreditsButton(){
 		MenuButton CreditsButton = new MenuButton("/CREDITSbutton.png");
 		mainPane.getChildren().add(CreditsButton);
+		CreditsButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				showSubScene(CreditsSubScene);
+			}
+		});
 	}
 	
 	private void createExitButton() {
 		MenuButton ExitButton = new MenuButton("/EXITbutton.png");
 		mainPane.getChildren().add(ExitButton);
+		ExitButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				mainStage.close();
+			}
+		});
 	}
 	private void createlogo() {
 		ImageView logo= new ImageView("/LASER_CHESS_logo.png");
