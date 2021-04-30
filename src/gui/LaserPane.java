@@ -2,6 +2,7 @@ package gui;
 
 
 import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
@@ -20,5 +21,8 @@ public class LaserPane extends GridPane{
 				this.add(laserPath, j, i);
 			}
 		}
+	}
+	public void addLaser(ImageView image,int x,int y) {
+		
 	}
 }

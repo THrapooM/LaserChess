@@ -27,6 +27,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,6 +45,7 @@ public class ViewManager {
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
 	private LaserChessSubScene HowToPlaySubScene,CreditsSubScene,SceneToHide;
+	private int i;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -76,7 +78,6 @@ public class ViewManager {
 		gamePane.setPrefSize(800, 1000);
 		gamePane.setAlignment(Pos.CENTER);
 		boardPane = new BoardPane();
-		laserPane = new LaserPane();
 		gamePane.getChildren().addAll(boardPane);
 		vBox.getChildren().addAll(gamePane,buttonController);
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
@@ -117,16 +118,44 @@ public class ViewManager {
 		}
 	}
 	public static void shootLaser(ArrayList<int[]> laserPath){
-		
-		for(int i = 0 ; i < laserPath.size() ; i++) {
-			System.out.println(laserPath.get(i));
-			String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
-			Image image = new Image(url);
-			ImageView imageView = new ImageView(image);
-			imageView.setFitHeight(100);
-			imageView.setFitWidth(100);
-			laserPane.add(imageView,laserPath.get(i)[2],laserPath.get(i)[1]);
-		}
+		laserPane = new LaserPane();
+		gamePane.getChildren().add(laserPane);
+		Thread tmp = new Thread(){
+			public void run() {
+				try {
+					for(int i = 0 ; i < laserPath.size() ; i++) {
+						sleep(100);
+						int laserIndex = i;
+						String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
+						Platform.runLater(new Runnable() {
+							@Override public void run() {
+								Image image = new Image(url);
+								ImageView imageView = new ImageView(image);
+								imageView.setFitHeight(100);
+								imageView.setFitWidth(100);
+								placeLaser(imageView,laserPath.get(laserIndex)[2],laserPath.get(laserIndex)[1]);			            		
+							}
+						});
+					}
+					sleep(300);
+					Platform.runLater(new Runnable() {
+						public void run() {
+							clearLaser();						
+						}
+					});
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		tmp.start();
+	}
+	private static void placeLaser(ImageView image,int x,int y) {
+		laserPane.add(image,x,y);
+	}
+	private static void clearLaser() {
+		gamePane.getChildren().remove(1);
 	}
 	private void createBackground() {
 		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);
