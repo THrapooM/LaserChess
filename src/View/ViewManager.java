@@ -8,6 +8,7 @@ import gui.CreateBoardPicker;
 import gui.LaserChessSubScene;
 import gui.LaserPane;
 import gui.MenuButton;
+import gui.MovementRules;
 import gui.PlayerNameScene;
 import gui.TokenGuide;
 import javafx.animation.PauseTransition;
@@ -192,7 +193,13 @@ public class ViewManager {
 				// TODO Auto-generated method stub
 				showSubScene(HowToPlaySubScene);
 				TokenGuide tokenguide = new TokenGuide();
+				tokenguide.setLayoutX(15);
+				tokenguide.setLayoutY(5);
 				HowToPlaySubScene.getPane().getChildren().add(tokenguide);
+				MovementRules movementRules = new MovementRules();
+				movementRules.setLayoutX(290);
+				movementRules.setLayoutY(5);
+				HowToPlaySubScene.getPane().getChildren().add(movementRules);
 			}
 		});
 	}
