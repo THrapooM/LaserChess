@@ -1,18 +1,18 @@
 package gui;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 import View.ViewManager;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import logic.GameManager;
+import javafx.scene.text.Font;
 
 public class CreateBoardPicker extends VBox{
 	
@@ -20,7 +20,9 @@ public class CreateBoardPicker extends VBox{
 	private HBox tmpBox;
 	private List<BoardPicker>BoardLists;
 	private BoardPic ChoosenBoard;
+	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public CreateBoardPicker() {
+		setHeader();
 		tmpBox = new HBox();
 		tmpBox.setSpacing(60);
 		BoardLists = new ArrayList<BoardPicker>();
@@ -51,11 +53,19 @@ public class CreateBoardPicker extends VBox{
 				tmpBox.setAlignment(Pos.CENTER);
 			}
 		}
+		this.setAlignment(Pos.CENTER);
 		this.getChildren().add(tmpBox);
 		createStartButton();
 	}
+	private void setHeader() {
+		Label label = new Label("SELECT BOARD");
+		label.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 50));
+		this.setAlignment(Pos.CENTER);
+		this.getChildren().add(label);
+	}
 	private void createStartButton() {
 		Button Next = new Button("Start");
+		Next.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 20));
 		this.getChildren().add(Next);
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

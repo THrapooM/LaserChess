@@ -1,11 +1,11 @@
 package gui;
 
 public enum BoardPic {
-	Ace("/AceBoard.png"),
-	Curiosty("/AceBoard.png"),
-	Grail("/AceBoard.png"),
-	Mercury("/AceBoard.png"),
-	Sophie("/AceBoard.png");
+	Ace("/Ace.png"),
+	Curiosty("/Curiosty.png"),
+	Grail("/Grail.png"),
+	Mercury("/Mercury.png"),
+	Sophie("/Sophie.png");
 	String urlBoard;
 	
 	private BoardPic(String urlBoard) {

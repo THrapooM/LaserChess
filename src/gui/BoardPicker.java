@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class BoardPicker extends VBox{
 	private Label BoardLabel;
@@ -13,6 +14,7 @@ public class BoardPicker extends VBox{
 	private ImageView BoardImage;
 	private String CircleNotChoosen = "/grey_circle.png";
 	private String CircleChoosen = "/red_boxTick.png";
+	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private BoardPic boardpic;
 	
 	private boolean isCircleChoosen;
@@ -22,11 +24,12 @@ public class BoardPicker extends VBox{
 		BoardLabel = new Label(Board.name());
 		circleImage = new ImageView(CircleNotChoosen);
 		BoardImage = new ImageView(Board.getUrlBoard());
-		BoardImage.setFitWidth(300);
-		BoardImage.setFitHeight(240);
+		BoardImage.setFitWidth(250);
+		BoardImage.setFitHeight(200);
 		this.boardpic = Board;
 		this.setSpacing(15);
 		this.getChildren().add(BoardLabel);
+		BoardLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
 		this.getChildren().add(BoardImage);
 		this.getChildren().add(circleImage);
 	}

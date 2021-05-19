@@ -11,10 +11,12 @@ import gui.MenuButton;
 import gui.MovementRules;
 import gui.PlayerNameScene;
 import gui.TokenGuide;
+import gui.PlayerTurn;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,12 +27,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.GameManager;
@@ -45,6 +50,7 @@ public class ViewManager {
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
+	private static PlayerTurn playerTurn;
 	private LaserChessSubScene playerSubscene,HowToPlaySubScene,CreditsSubScene,SceneToHide;
 	public ViewManager() {
 		initScene1();
@@ -67,23 +73,27 @@ public class ViewManager {
 //	}
 	public static void initScene3() {
 		CreateBoardPicker AllBoard = new CreateBoardPicker();
+		AllBoard.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,CornerRadii.EMPTY, Insets.EMPTY)));
 		boardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(boardPickerScene);
 	}
 	public static void initScene4(int boardNumber) {
 		GameManager.startGame(boardNumber);
 		VBox vBox = new VBox();
+		playerTurn = new PlayerTurn();
 		buttonController = new ButtonController();
 		gamePane = new StackPane();
 		gamePane.setPrefSize(800, 1000);
 		gamePane.setAlignment(Pos.CENTER);
 		boardPane = new BoardPane();
 		gamePane.getChildren().addAll(boardPane);
-		vBox.getChildren().addAll(gamePane,buttonController);
+		vBox.getChildren().addAll(playerTurn,gamePane,buttonController);
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
 		mainStage.setHeight(900);
-		mainStage.setWidth(1100);
+		mainStage.setWidth(1150);
+//		mainStage.setHeight(900);
+//		mainStage.setWidth(1100);
 	}
 	private void createSubScene() {
 		HowToPlaySubScene = new LaserChessSubScene();

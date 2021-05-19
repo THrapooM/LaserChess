@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 
 import View.ViewManager;
+import gui.PlayerTurn;
 import logic.base.*;
 
 public class GameManager {
@@ -91,6 +92,7 @@ public class GameManager {
 			tmpy = tmpy + laserY[tmpdir];
 		}
 		ViewManager.shootLaser(laserPath);
+		
 		teamTurn = teamTurn == 1? 2:1;
 	}
 	
