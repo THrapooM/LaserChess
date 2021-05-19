@@ -45,8 +45,7 @@ public class ViewManager {
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
-	private LaserChessSubScene HowToPlaySubScene,CreditsSubScene,SceneToHide;
-	private int i;
+	private LaserChessSubScene playerSubscene,HowToPlaySubScene,CreditsSubScene,SceneToHide;
 	public ViewManager() {
 		initScene1();
 		mainStage = new Stage();
@@ -61,11 +60,11 @@ public class ViewManager {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane,WIDTH,HEIGHT);
 	}
-	public static void initScene2() {
-		PlayerNameScene mainPane2 = new PlayerNameScene();
-		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);
-		mainStage.setScene(PlayerScene);
-	}
+//	public static void initScene2() {
+//		PlayerNameScene mainPane2 = new PlayerNameScene();
+//		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);
+//		mainStage.setScene(PlayerScene);
+//	}
 	public static void initScene3() {
 		CreateBoardPicker AllBoard = new CreateBoardPicker();
 		boardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
@@ -89,7 +88,8 @@ public class ViewManager {
 	private void createSubScene() {
 		HowToPlaySubScene = new LaserChessSubScene();
 		CreditsSubScene = new LaserChessSubScene();
-		mainPane.getChildren().addAll(HowToPlaySubScene,CreditsSubScene);
+		playerSubscene = new LaserChessSubScene();
+		mainPane.getChildren().addAll(playerSubscene,HowToPlaySubScene,CreditsSubScene);
 	}
 	private void showSubScene(LaserChessSubScene subScene) {
 		if(SceneToHide!=null) {
@@ -178,7 +178,9 @@ public class ViewManager {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-				initScene2();
+				showSubScene(playerSubscene);
+				PlayerNameScene playerNameScene = new PlayerNameScene();
+				playerSubscene.getPane().getChildren().add(playerNameScene);
 			}
 		});
 	}
