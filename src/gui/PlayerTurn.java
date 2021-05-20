@@ -17,8 +17,8 @@ public class PlayerTurn extends HBox{
 	public PlayerTurn() {
 		redPlayerName = GameManager.getTeamName()[0];
 		bluePlayerName = GameManager.getTeamName()[1];
-		redTurn = "Turn " + redPlayerName;
-		blueTurn = "Turn " + bluePlayerName;
+		redTurn = redPlayerName + "'s Turn";
+		blueTurn = bluePlayerName + "'s Turn ";
 		swapTurn();
 	}
 	public void swapTurn() {
