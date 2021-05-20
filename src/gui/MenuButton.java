@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 
 
 public class MenuButton extends Button{
@@ -34,6 +35,16 @@ public class MenuButton extends Button{
 			
 			public void handle(MouseEvent arg0) {
 				setEffect(null);
+			}
+		});
+		this.setOnMousePressed(new EventHandler<MouseEvent>() {
+			
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				AudioClip mousePressedSound = new AudioClip(getClass().getResource("/audio/mousepressedsound.mp3").toExternalForm());
+				mousePressedSound.setVolume(0.5);
+				mousePressedSound.play();
 			}
 		});
 	}

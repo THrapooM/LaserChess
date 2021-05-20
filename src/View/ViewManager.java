@@ -12,15 +12,11 @@ import gui.MovementRules;
 import gui.PlayerNameScene;
 import gui.TokenGuide;
 import gui.PlayerTurn;
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,12 +28,11 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import logic.GameManager;
 
 public class ViewManager {
@@ -60,17 +55,19 @@ public class ViewManager {
 		createBackground();
 		createSubScene();
 		createButtons();
-		createlogo();
+		createlogo();playSound();
+	}
+	public void playSound() {
+		AudioClip backgroundsound = new AudioClip(getClass().getResource("/audio/backgroundsound.wav").toExternalForm());
+		backgroundsound.setCycleCount(AudioClip.INDEFINITE);
+		backgroundsound.setVolume(0.05);
+		backgroundsound.play();
 	}
 	private void initScene1() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane,WIDTH,HEIGHT);
 	}
-//	public static void initScene2() {
-//		PlayerNameScene mainPane2 = new PlayerNameScene();
-//		PlayerScene = new Scene(mainPane2,WIDTH,HEIGHT);
-//		mainStage.setScene(PlayerScene);
-//	}
+	
 	public static void initScene3() {
 		CreateBoardPicker AllBoard = new CreateBoardPicker();
 		AllBoard.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,CornerRadii.EMPTY, Insets.EMPTY)));
@@ -91,9 +88,7 @@ public class ViewManager {
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
 		mainStage.setHeight(900);
-		mainStage.setWidth(1150);
-//		mainStage.setHeight(900);
-//		mainStage.setWidth(1100);
+		mainStage.setWidth(1100);
 	}
 	private void createSubScene() {
 		HowToPlaySubScene = new LaserChessSubScene();
@@ -137,6 +132,9 @@ public class ViewManager {
 	}
 	public static void clearLaser() {
 		gamePane.getChildren().remove(1);
+	}
+	public static void swapTurn() {
+		playerTurn.swapTurn();
 	}
 	private void createBackground() {
 		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);

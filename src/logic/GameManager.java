@@ -7,6 +7,7 @@ import gui.PlayerTurn;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import logic.base.*;
 
 public class GameManager {
@@ -20,7 +21,7 @@ public class GameManager {
 	private static ArrayList<int[]> laserPath;
 	private static boolean gameIsOver = false;
 	private static int tmpx,tmpy,tmpdir,newdir,tmpurl;
-	
+	private static final String SOUND_PATH = "audio/jellyBeam.mp3";
 	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
 	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
 	private static final int[] laserX = {-1,0,1,0};
@@ -56,11 +57,13 @@ public class GameManager {
 	public static ChessPiece getChessPiece(int x,int y) {
 		return chessBoard[x][y];
 	}
-
+	
 	public static void changeTurn() {
 		tmpx = laserTurret[teamTurn-1].getX() + laserX[laserTurret[teamTurn-1].getDirection()];
 		tmpy = laserTurret[teamTurn-1].getY() + laserY[laserTurret[teamTurn-1].getDirection()];
 		tmpdir = laserTurret[teamTurn-1].getDirection();
+		AudioClip laserSound = new AudioClip(ClassLoader.getSystemResource(SOUND_PATH).toString());
+		laserSound.play();
 		Thread laserThread = new Thread() {
 			public void run() {
 				Platform.runLater(new Runnable() {public void run() {ViewManager.startLaserPane();}});
@@ -107,6 +110,8 @@ public class GameManager {
 							e.printStackTrace();
 						}
 						ViewManager.clearLaser();
+						ViewManager.swapTurn();
+						
 					}
 				});
 			}

@@ -22,6 +22,7 @@ public class PlayerTurn extends HBox{
 		swapTurn();
 	}
 	public void swapTurn() {
+		this.getChildren().clear();
 		Label redLabel = new Label(redTurn);
 		redLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
 		redLabel.setTextFill(Color.web("#ff1458"));
