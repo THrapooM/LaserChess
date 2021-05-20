@@ -183,8 +183,8 @@ public class GameManager {
 			if(tmpx >= 0 && tmpx <= 7 && tmpy >= 0 && tmpy <= 9) {
 				if(!(selectedChessPiece instanceof Switch) && chessBoard[tmpx][tmpy] != null) continue;
 				if(chessBoard[tmpx][tmpy] instanceof King || chessBoard[tmpx][tmpy] instanceof Switch || chessBoard[tmpx][tmpy] instanceof LaserTower) continue;
-				if(selectedChessPiece.getTeam() == 1 && (tmpy == 9 || (tmpy == 8 && (tmpx == 0 || tmpx == 7)))) continue;
-				if(selectedChessPiece.getTeam() == 2 && (tmpy == 0 || (tmpy == 1 && (tmpx == 0 || tmpx == 7)))) continue;
+				if(selectedChessPiece.getTeam() == 1 && (tmpy == 9 || (tmpy == 1 && (tmpx == 0 || tmpx == 7)))) continue;
+				if(selectedChessPiece.getTeam() == 2 && (tmpy == 0 || (tmpy == 8 && (tmpx == 0 || tmpx == 7)))) continue;
 				int[] tmpPOS = {tmpx,tmpy};
 				movablePOS.add(tmpPOS);
 			}

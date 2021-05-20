@@ -1,5 +1,6 @@
 package gui;
 
+import Exception.NoSelectedChessPieceException;
 import View.ViewManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,23 +43,31 @@ public class ButtonController extends HBox{
 		rotateLeftButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				if(GameManager.getSelectedChessPiece()!=null) {
-					GameManager.rotate(3);
-					GameManager.setSelectedChessPiece(null);
-					resetstyle();
-					ViewManager.unhighlight();
+				try {
+					if(GameManager.getSelectedChessPiece()!=null) {
+						GameManager.rotate(3);
+						GameManager.setSelectedChessPiece(null);
+						resetstyle();
+						ViewManager.unhighlight();
+					}else throw new NoSelectedChessPieceException("No selected chesspiece");
+				}catch(NoSelectedChessPieceException e) {
+					System.out.println(e.getMessage());
 				}
 			}
 		});
 		
 		rotateRightButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) {
-				if(GameManager.getSelectedChessPiece()!=null) {
-					GameManager.rotate(1);
-					GameManager.setSelectedChessPiece(null);
-					resetstyle();
-					ViewManager.unhighlight();
+			public void handle(ActionEvent arg0) {					
+				try {
+					if(GameManager.getSelectedChessPiece()!=null) {
+						GameManager.rotate(1);
+						GameManager.setSelectedChessPiece(null);
+						resetstyle();
+						ViewManager.unhighlight();
+					}else throw new NoSelectedChessPieceException("No selected chesspiece");
+				}catch(NoSelectedChessPieceException e) {
+					System.out.println(e.getMessage());
 				}
 			}
 		});

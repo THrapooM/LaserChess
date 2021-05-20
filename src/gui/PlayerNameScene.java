@@ -1,5 +1,6 @@
 package gui;
 
+import Exception.NoNameException;
 import View.ViewManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,10 +68,16 @@ public class PlayerNameScene extends VBox{
 		this.getChildren().add(tmpHBox);
 		NEXTButton.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				if(p1TextField.getText()!="" && p2TextField.getText()!="") {
-					GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
-					ViewManager.initScene3();
+				try {
+					if(p1TextField.getText()!="" && p2TextField.getText()!="") {
+						GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
+						ViewManager.initScene3();
+					}else {
+						throw new NoNameException("Plaese enter team's name");
+					}					
+				}catch(NoNameException e) {
+//					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 		});

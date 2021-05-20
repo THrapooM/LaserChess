@@ -87,8 +87,9 @@ public class ViewManager {
 		vBox.getChildren().addAll(playerTurn,gamePane,buttonController);
 		Scene BoardScene = new Scene(vBox,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(BoardScene);
-		mainStage.setHeight(900);
+		mainStage.setHeight(930);
 		mainStage.setWidth(1100);
+		mainStage.setResizable(false);
 	}
 	private void createSubScene() {
 		HowToPlaySubScene = new LaserChessSubScene();
@@ -157,8 +158,10 @@ public class ViewManager {
 			@Override
 			public void handle(ActionEvent arg0) {
 				showSubScene(playerSubscene);
-				PlayerNameScene playerNameScene = new PlayerNameScene();
-				playerSubscene.getPane().getChildren().add(playerNameScene);
+				try {
+					PlayerNameScene playerNameScene = new PlayerNameScene();
+					playerSubscene.getPane().getChildren().add(playerNameScene);					
+				}catch(Exception e) {}
 			}
 		});
 	}

@@ -70,7 +70,11 @@ public class CreateBoardPicker extends VBox{
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				ViewManager.initScene4(ChoosenBoard.ordinal());
+				try {
+					ViewManager.initScene4(ChoosenBoard.ordinal());					
+				}catch(NullPointerException e) {
+					System.out.println("Plaese select a board");
+				}
 			}
 		});
 	}

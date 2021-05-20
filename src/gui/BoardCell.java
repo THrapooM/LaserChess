@@ -73,7 +73,11 @@ public class BoardCell extends Pane{
 		this.y = y;
 		this.setPrefWidth(90);
 		this.setPrefHeight(90);
-		this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+		if ((x == 0 || x == 7) && y == 1) this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+		else if ((x == 0 || x == 7) && y == 8) this.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK, CornerRadii.EMPTY, Insets.EMPTY)));
+		else if(y == 0) this.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK, CornerRadii.EMPTY, Insets.EMPTY)));
+		else if (y == 9) this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+		else this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 	public void updateChessPiece() {
 		this.chessPiece = GameManager.getChessPiece(x, y);
@@ -92,7 +96,7 @@ public class BoardCell extends Pane{
 	}
 	
 	public void unhighlight() {
-		this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+		setPane(x,y);
 		ishighlight = false;
 	}
 	
