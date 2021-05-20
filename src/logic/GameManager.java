@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import View.ViewManager;
 import gui.PlayerTurn;
+import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import logic.base.*;
 
 public class GameManager {
@@ -16,6 +19,7 @@ public class GameManager {
 	private static ChessPiece[] laserTurret = new ChessPiece[2];
 	private static ArrayList<int[]> laserPath;
 	private static boolean gameIsOver = false;
+	private static int tmpx,tmpy,tmpdir,newdir,tmpurl;
 	
 	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
 	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
@@ -54,45 +58,60 @@ public class GameManager {
 	}
 
 	public static void changeTurn() {
-		int tmpx = laserTurret[teamTurn-1].getX() + laserX[laserTurret[teamTurn-1].getDirection()];
-		int tmpy = laserTurret[teamTurn-1].getY() + laserY[laserTurret[teamTurn-1].getDirection()];
-		int tmpdir = laserTurret[teamTurn-1].getDirection();
-		ArrayList<int[]> laserPath = new ArrayList<int[]>();
-		while(tmpx >= 0 && tmpx < 8 && tmpy >= 0 && tmpy < 10) {
-			int newdir = tmpdir;
-			if(chessBoard[tmpx][tmpy] != null) {
-				newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
-				if(newdir == 4) break;
-			}
-			if(tmpdir == newdir) {
-				if(tmpdir%2 == 0) {
-					int[] tmpArray = {1,tmpx,tmpy};
-					laserPath.add(tmpArray);
-				}else {
-					int[] tmpArray = {2,tmpx,tmpy};
-					laserPath.add(tmpArray);
+		tmpx = laserTurret[teamTurn-1].getX() + laserX[laserTurret[teamTurn-1].getDirection()];
+		tmpy = laserTurret[teamTurn-1].getY() + laserY[laserTurret[teamTurn-1].getDirection()];
+		tmpdir = laserTurret[teamTurn-1].getDirection();
+		Thread laserThread = new Thread() {
+			public void run() {
+				Platform.runLater(new Runnable() {public void run() {ViewManager.startLaserPane();}});
+				while(tmpx >= 0 && tmpx < 8 && tmpy >= 0 && tmpy < 10) {
+					newdir = tmpdir;
+					if(chessBoard[tmpx][tmpy] != null) {
+//						Platform.runLater(new Runnable() {public void run() {newdir = chessBoard[tmpx][tmpy].interact(tmpdir);}});
+						newdir = chessBoard[tmpx][tmpy].interact(tmpdir);
+						if(newdir == 4) break;
+					}
+					if(tmpdir == newdir) {
+						if(tmpdir%2 == 0) tmpurl = 1;
+						else tmpurl = 2;
+					}else {
+						if((tmpdir == 2 && newdir == 1) || (tmpdir == 3 && newdir == 0)) tmpurl = 3;
+						else if((tmpdir == 3 && newdir == 2) || (tmpdir == 0 && newdir == 1)) tmpurl = 4;
+						else if((tmpdir == 1 && newdir == 2) || (tmpdir == 0 && newdir == 3)) tmpurl = 5;
+						else tmpurl = 6;
+					}
+					String url = "/" + "laser" + tmpurl + ".png";
+					Platform.runLater(new Runnable() {
+						@Override public void run() {
+							Image image = new Image(url);
+							ImageView imageView = new ImageView(image);
+							imageView.setFitHeight(100);
+							imageView.setFitWidth(100);
+							ViewManager.placeLaser(imageView,tmpy,tmpx);			            		
+						}
+					});
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					tmpdir = newdir;
+					tmpx = tmpx + laserX[tmpdir];
+					tmpy = tmpy + laserY[tmpdir];
 				}
-			}else {
-				if((tmpdir == 2 && newdir == 1) || (tmpdir == 3 && newdir == 0)) {
-					int[] tmpArray = {3,tmpx,tmpy};
-					laserPath.add(tmpArray);
-				}else if((tmpdir == 3 && newdir == 2) || (tmpdir == 0 && newdir == 1)) {
-					int[] tmpArray = {4,tmpx,tmpy};
-					laserPath.add(tmpArray);
-				}else if((tmpdir == 1 && newdir == 2) || (tmpdir == 0 && newdir == 3)) {
-					int[] tmpArray = {5,tmpx,tmpy};
-					laserPath.add(tmpArray);
-				}else{
-					int[] tmpArray = {6,tmpx,tmpy};
-					laserPath.add(tmpArray);
-				}
+				Platform.runLater(new Runnable() {
+					public void run() {
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						ViewManager.clearLaser();
+					}
+				});
 			}
-			tmpdir = newdir;
-			tmpx = tmpx + laserX[tmpdir];
-			tmpy = tmpy + laserY[tmpdir];
-		}
-		ViewManager.shootLaser(laserPath);
-		
+		};
+		laserThread.start();
 		teamTurn = teamTurn == 1? 2:1;
 	}
 	
@@ -106,8 +125,13 @@ public class GameManager {
 	}
 	
 	public static void chessPieceCaptured(ChessPiece capturedChessPiece) {
-		chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
-		ViewManager.updateBoard();
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
+				ViewManager.updateBoard();			
+			}
+		});
 	}
 	
 	public static void move(int x1,int y1) {

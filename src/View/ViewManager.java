@@ -128,44 +128,14 @@ public class ViewManager {
 			}		
 		}
 	}
-	public static void shootLaser(ArrayList<int[]> laserPath){
+	public static void startLaserPane() {
 		laserPane = new LaserPane();
 		gamePane.getChildren().add(laserPane);
-		Thread tmp = new Thread(){
-			public void run() {
-				try {
-					for(int i = 0 ; i < laserPath.size() ; i++) {
-						sleep(100);
-						int laserIndex = i;
-						String url = "/" + "laser" + laserPath.get(i)[0] + ".png";
-						Platform.runLater(new Runnable() {
-							@Override public void run() {
-								Image image = new Image(url);
-								ImageView imageView = new ImageView(image);
-								imageView.setFitHeight(100);
-								imageView.setFitWidth(100);
-								placeLaser(imageView,laserPath.get(laserIndex)[2],laserPath.get(laserIndex)[1]);			            		
-							}
-						});
-					}
-					sleep(300);
-					Platform.runLater(new Runnable() {
-						public void run() {
-							clearLaser();						
-						}
-					});
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		};
-		tmp.start();
 	}
-	private static void placeLaser(ImageView image,int x,int y) {
+	public static void placeLaser(ImageView image,int x,int y) {
 		laserPane.add(image,x,y);
 	}
-	private static void clearLaser() {
+	public static void clearLaser() {
 		gamePane.getChildren().remove(1);
 	}
 	private void createBackground() {

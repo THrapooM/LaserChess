@@ -12,6 +12,8 @@ public class LaserPane extends GridPane{
 		this.setPrefWidth(1000);
 		this.setPrefHeight(800);
 		this.setAlignment(Pos.CENTER);
+		this.setHgap(0);
+		this.setVgap(0);
 		for(int i = 0 ; i < 8 ; i++) {
 			for(int j = 0 ; j < 10 ; j++) {
 				StackPane laserPath = new StackPane();
@@ -21,8 +23,5 @@ public class LaserPane extends GridPane{
 				this.add(laserPath, j, i);
 			}
 		}
-	}
-	public void addLaser(ImageView image,int x,int y) {
-		
 	}
 }
