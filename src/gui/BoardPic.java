@@ -2,7 +2,7 @@ package gui;
 
 public enum BoardPic {
 	Ace("/Ace.png"),
-	Curiosty("/Curiosty.png"),
+	Curiosity("/Curiosity.png"),
 	Grail("/Grail.png"),
 	Mercury("/Mercury.png"),
 	Sophie("/Sophie.png");
