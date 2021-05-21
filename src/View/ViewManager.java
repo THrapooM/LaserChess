@@ -52,21 +52,19 @@ public class ViewManager {
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
 	private static PlayerTurn playerTurn;
-	private LaserChessSubScene playerSubScene,HowToPlaySubScene,CreditsSubScene,SceneToHide;
+	private static LaserChessSubScene playerSubScene;
+	private static LaserChessSubScene HowToPlaySubScene;
+	private static LaserChessSubScene CreditsSubScene;
+	private static LaserChessSubScene SceneToHide;
 	private static EndGameSubScene endMenuSubScene;
 	private static EndGameButton endGameButton;
 	private static CreateBoardPicker AllBoard;
 	private final static String FONT_PATH = "ZenDots-Regular.ttf";
 	public ViewManager() {
-		initScene1();
 		mainStage = new Stage();
-		mainStage.setScene(mainScene);
 		mainStage.setTitle("Laser Chess");
-		createBackground();
-		createSubScene();
-		createButtons();
-		createlogo();
 		playSound();
+		initMainScene();
 	}
 	public void playSound() {
 		AudioClip backgroundsound = Audioloader.backGroundSound;
@@ -74,18 +72,26 @@ public class ViewManager {
 		backgroundsound.setVolume(0.05);
 		backgroundsound.play();
 	}
-	private static void initScene1() {
+	public static void initMainScene() {
 		mainPane = new AnchorPane();
 		mainScene = new Scene(mainPane,WIDTH,HEIGHT);
+		MenuButton.setHeight(300);
+		createBackground();
+		createSubScene();
+		createButtons();
+		createlogo();
+		ViewManager.getMainStage().setWidth(WIDTH);
+		ViewManager.getMainStage().setHeight(HEIGHT);
+		ViewManager.getMainStage().setScene(mainScene);
 	}
 	
-	public static void initScene3() {
+	public static void initBoardPickerScene() {
 		AllBoard = new CreateBoardPicker();
 		AllBoard.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,CornerRadii.EMPTY, Insets.EMPTY)));
 		boardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(boardPickerScene);
 	}
-	private void createSubScene() {
+	private static void createSubScene() {
 		HowToPlaySubScene = new LaserChessSubScene();
 		CreditsSubScene = new LaserChessSubScene();
 		playerSubScene = new LaserChessSubScene();
@@ -113,7 +119,7 @@ public class ViewManager {
 		});
 		thread.start();
 	}
-	public static void initScene4(int boardNumber) {
+	public static void initGameScene(int boardNumber) {
 		GameManager.startGame(boardNumber);
 		VBox vBox = new VBox();
 		playerTurn = new PlayerTurn();
@@ -130,7 +136,7 @@ public class ViewManager {
 		mainStage.setWidth(1100);
 		mainStage.setResizable(false);
 	}
-	private void showSubScene(LaserChessSubScene subScene) {
+	private static void showSubScene(LaserChessSubScene subScene) {
 		if(SceneToHide!=null) {
 			SceneToHide.moveSubScene();
 		}
@@ -170,19 +176,19 @@ public class ViewManager {
 	public static void swapTurn() {
 		playerTurn.swapTurn();
 	}
-	private void createBackground() {
+	private static void createBackground() {
 		Image backgroundImage = new Image("/25199.jpg",1024, 768, false, false);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		mainPane.setBackground(new Background(background));
 	}
-	private void createButtons() {
+	private static void createButtons() {
 		createPlayButton();
 		createHowToPlayButton();
 		createCreditsButton();
 		createExitButton();
 	}
 	
-	private void createPlayButton() {
+	private static void createPlayButton() {
 		MenuButton playButton = new MenuButton("/PLAYbutton.png");
 		mainPane.getChildren().add(playButton);
 		
@@ -199,7 +205,7 @@ public class ViewManager {
 		});
 	}
 	
-	private void createHowToPlayButton() {
+	private static void createHowToPlayButton() {
 		MenuButton HowToPlayButton = new MenuButton("/HOWTOPLAYbutton.png");
 		mainPane.getChildren().add(HowToPlayButton);
 		HowToPlayButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -220,7 +226,7 @@ public class ViewManager {
 		});
 	}
 	
-	private void createCreditsButton(){
+	private static void createCreditsButton(){
 		MenuButton CreditsButton = new MenuButton("/CREDITSbutton.png");
 		mainPane.getChildren().add(CreditsButton);
 		CreditsButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -233,7 +239,7 @@ public class ViewManager {
 		});
 	}
 	
-	private void createExitButton() {
+	private static void createExitButton() {
 		MenuButton ExitButton = new MenuButton("/EXITbutton.png");
 		mainPane.getChildren().add(ExitButton);
 		ExitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -245,7 +251,7 @@ public class ViewManager {
 			}
 		});
 	}
-	private void createlogo() {
+	private static void createlogo() {
 		ImageView logo= new ImageView("/LASER_CHESS_logo.png");
 		logo.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			

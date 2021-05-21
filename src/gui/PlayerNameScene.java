@@ -76,7 +76,7 @@ public class PlayerNameScene extends VBox{
 						mousePressedSound.setVolume(0.5);
 						mousePressedSound.play();
 						GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
-						ViewManager.initScene3();
+						ViewManager.initBoardPickerScene();
 					}else {
 						throw new NoNameException("Plaese enter team's name");
 					}					

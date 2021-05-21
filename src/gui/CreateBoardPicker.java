@@ -82,8 +82,9 @@ public class CreateBoardPicker extends VBox{
 					AudioClip mousePressedSound = Audioloader.mousePressedSound;
 					mousePressedSound.setVolume(0.5);
 					mousePressedSound.play();
-					ViewManager.initScene4(ChoosenBoard.ordinal());
+					ViewManager.initGameScene(ChoosenBoard.ordinal());
 				}catch(NullPointerException e) {
+					e.printStackTrace();
 					System.out.println("Plaese select a board");
 				}
 			}

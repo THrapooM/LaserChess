@@ -23,7 +23,11 @@ public class MenuButton extends Button{
 		setLayoutY(height);
 		height += 95;
 		setFunctionMenu();
-	}		
+	}
+	public static void setHeight(int height) {
+		MenuButton.height = height;
+	}
+
 	private void setFunctionMenu() {
 		
 		this.setOnMouseEntered(new EventHandler<MouseEvent>() {

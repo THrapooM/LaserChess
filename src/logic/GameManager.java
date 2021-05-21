@@ -11,8 +11,7 @@ import javafx.scene.media.AudioClip;
 import logic.base.*;
 
 public class GameManager {
-	private static ChessPiece[][] chessBoard;
-	private static ArrayList<Rotatable> rotatablePieceList;
+	private static ChessPiece[][] chessBoard = new ChessPiece[8][10];
 	private static int winnerTeam;
 	private static ChessPiece selectedChessPiece;
 	private static String[] team = new String[2];
@@ -29,10 +28,15 @@ public class GameManager {
 	private static final String[] laserURL = {};
 	
 	public static void startGame(int boardNumber) {
-		chessBoard = StartingBoard.getStartingBoard(boardNumber);
+		teamTurn = 1;
+		chessBoard = new ChessPiece[8][10];
 		for(int i = 0;i < chessBoard.length;i++) {
 			for(int j = 0;j < chessBoard[i].length;j++) {
-				
+				if(StartingBoard.getStartingBoard(boardNumber)[i][j] != null)
+					try {
+						chessBoard[i][j] = (ChessPiece) StartingBoard.getStartingBoard(boardNumber)[i][j].clone();
+					} catch (CloneNotSupportedException e) {}
+				else chessBoard[i][j] = null;
 			}
 		}
 		winnerTeam = 0;
@@ -166,14 +170,6 @@ public class GameManager {
 		ViewManager.updateBoard();
 		changeTurn();
 	}
-	
-	public static void rotateBoard(int direction) {
-		for(int i = 0;i < rotatablePieceList.size();i++) {
-			rotatablePieceList.get(i).rotate(direction);
-		}
-		ViewManager.updateBoard();
-		changeTurn();
-	}
 
 	public static ArrayList<int[]> getMovablePOS(){
 		ArrayList<int[]> movablePOS = new ArrayList<int[]>();
@@ -195,10 +191,6 @@ public class GameManager {
 	
 	public static ChessPiece[][] getChessBoard() {
 		return chessBoard;
-	}
-
-	public static ArrayList<Rotatable> getRotatablePieceList() {
-		return rotatablePieceList;
 	}
 
 	public static ChessPiece getSelectedChessPiece() {

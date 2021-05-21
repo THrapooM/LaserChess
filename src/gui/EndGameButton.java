@@ -27,7 +27,7 @@ public class EndGameButton extends VBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				ViewManager.initScene4(CreateBoardPicker.getChoosenBoard().ordinal());
+				ViewManager.initGameScene(CreateBoardPicker.getChoosenBoard().ordinal());
 			}
 		});
 		mainMenu.setOnAction(new EventHandler<ActionEvent>() {
@@ -35,7 +35,7 @@ public class EndGameButton extends VBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				ViewManager.getMainStage().setScene(ViewManager.getMainScene());
+				ViewManager.initMainScene();
 			}
 		});
 	}
