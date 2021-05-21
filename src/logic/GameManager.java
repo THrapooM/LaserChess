@@ -123,6 +123,7 @@ public class GameManager {
 	public static void kingIsKilled(int loserTeam) {
 		winnerTeam = loserTeam == 1? 2:1;
 		gameIsOver = true;
+		ViewManager.showEndScene();
 	}
 	
 	public static void setSelectedChessPiece(ChessPiece selectedChessPiece) {

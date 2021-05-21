@@ -4,6 +4,7 @@ package gui;
 import java.util.ArrayList;
 import java.util.List;
 import View.ViewManager;
+import element.Audioloader;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,15 +13,19 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
 public class CreateBoardPicker extends VBox{
 	
-	private static int count  = 0;
+	private int count  = 0;
 	private HBox tmpBox;
 	private List<BoardPicker>BoardLists;
-	private BoardPic ChoosenBoard;
+	private static BoardPic ChoosenBoard;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
+	public String getFONT_PATH() {
+		return FONT_PATH;
+	}
 	public CreateBoardPicker() {
 		setHeader();
 		tmpBox = new HBox();
@@ -37,13 +42,16 @@ public class CreateBoardPicker extends VBox{
 				@Override
 				public void handle(MouseEvent arg0) {
 					// TODO Auto-generated method stub
+					AudioClip mousePressedSound = Audioloader.mousePressedSound;
+					mousePressedSound.setVolume(0.5);
+					mousePressedSound.play();
 					for (BoardPicker Board : BoardLists) {
 							Board.setIsBoardChoosen(false);
+							
 					}
 					BoardToPick.setIsBoardChoosen(true);
 					ChoosenBoard = BoardToPick.getBoardpic();
 				}
-				
 			});
 			if(count==3) {
 				tmpBox.setAlignment(Pos.CENTER);
@@ -71,11 +79,17 @@ public class CreateBoardPicker extends VBox{
 			@Override
 			public void handle(MouseEvent arg0) {
 				try {
-					ViewManager.initScene4(ChoosenBoard.ordinal());					
+					AudioClip mousePressedSound = Audioloader.mousePressedSound;
+					mousePressedSound.setVolume(0.5);
+					mousePressedSound.play();
+					ViewManager.initScene4(ChoosenBoard.ordinal());
 				}catch(NullPointerException e) {
 					System.out.println("Plaese select a board");
 				}
 			}
 		});
+	}
+	public static BoardPic getChoosenBoard() {
+		return ChoosenBoard;
 	}
 }

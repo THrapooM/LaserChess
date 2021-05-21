@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.SubScene;
 import javafx.scene.image.Image;

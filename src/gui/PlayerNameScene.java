@@ -2,6 +2,7 @@ package gui;
 
 import Exception.NoNameException;
 import View.ViewManager;
+import element.Audioloader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -12,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import logic.GameManager;
 
@@ -70,6 +72,9 @@ public class PlayerNameScene extends VBox{
 			public void handle(ActionEvent arg0) {
 				try {
 					if(p1TextField.getText()!="" && p2TextField.getText()!="") {
+						AudioClip mousePressedSound = Audioloader.mousePressedSound;
+						mousePressedSound.setVolume(0.5);
+						mousePressedSound.play();
 						GameManager.setTeamName(p1TextField.getText(), p2TextField.getText());
 						ViewManager.initScene3();
 					}else {

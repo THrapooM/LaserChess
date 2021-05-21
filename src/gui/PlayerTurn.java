@@ -28,7 +28,7 @@ public class PlayerTurn extends HBox{
 		redLabel.setTextFill(Color.web("#ff1458"));
 		Label blueLabel = new Label(blueTurn);
 		blueLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
-		blueLabel.setTextFill(Color.web("7cb1ff"));
+		blueLabel.setTextFill(Color.web("121c5e"));
 		if(turn) {
 			redLabel.setEffect(new Glow(0.8));
 			blueLabel.setEffect(null);
