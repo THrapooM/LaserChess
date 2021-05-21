@@ -46,19 +46,19 @@ public class ViewManager {
 	private static final int HEIGHT = 768;
 	private static AnchorPane mainPane;
 	private static Stage mainStage;
-	private static Scene mainScene,PlayerScene,boardPickerScene;
+	private static Scene mainScene,boardPickerScene;
 	private static LaserPane laserPane;
 	private static BoardPane boardPane;
 	private static StackPane gamePane;
 	private static ButtonController buttonController;
 	private static PlayerTurn playerTurn;
 	private static LaserChessSubScene playerSubScene;
-	private static LaserChessSubScene HowToPlaySubScene;
-	private static LaserChessSubScene CreditsSubScene;
-	private static LaserChessSubScene SceneToHide;
+	private static LaserChessSubScene howToPlaySubScene;
+	private static LaserChessSubScene creditsSubScene;
+	private static LaserChessSubScene sceneToHide;
 	private static EndGameSubScene endMenuSubScene;
 	private static EndGameButton endGameButton;
-	private static CreateBoardPicker AllBoard;
+	private static CreateBoardPicker allBoard;
 	private final static String FONT_PATH = "/ZenDots-Regular.ttf";
 	public ViewManager() {
 		mainStage = new Stage();
@@ -86,21 +86,20 @@ public class ViewManager {
 	}
 	
 	public static void initBoardPickerScene() {
-		AllBoard = new CreateBoardPicker();
-		AllBoard.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,CornerRadii.EMPTY, Insets.EMPTY)));
-		boardPickerScene = new Scene(AllBoard,ViewManager.getWidth(),ViewManager.getHeight());
+		allBoard = new CreateBoardPicker();
+		allBoard.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,CornerRadii.EMPTY, Insets.EMPTY)));
+		boardPickerScene = new Scene(allBoard,ViewManager.getWidth(),ViewManager.getHeight());
 		ViewManager.getMainStage().setScene(boardPickerScene);
 	}
 	private static void createSubScene() {
-		HowToPlaySubScene = new LaserChessSubScene();
-		CreditsSubScene = new LaserChessSubScene();
+		howToPlaySubScene = new LaserChessSubScene();
+		creditsSubScene = new LaserChessSubScene();
 		playerSubScene = new LaserChessSubScene();
-		mainPane.getChildren().addAll(playerSubScene,HowToPlaySubScene,CreditsSubScene);
+		mainPane.getChildren().addAll(playerSubScene,howToPlaySubScene,creditsSubScene);
 	}
 	public static void showEndScene() {
 		endMenuSubScene =  new EndGameSubScene();
 		String WinnerName = GameManager.getWinnerTeam();
-		String
 		Label label = new Label(WinnerName);
 		Label label2 = new Label("Win");
 		label2.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),23));
@@ -140,11 +139,11 @@ public class ViewManager {
 		mainStage.setResizable(false);
 	}
 	private static void showSubScene(LaserChessSubScene subScene) {
-		if(SceneToHide!=null) {
-			SceneToHide.moveSubScene();
+		if(sceneToHide!=null) {
+			sceneToHide.moveSubScene();
 		}
 		subScene.moveSubScene();
-		SceneToHide = subScene;
+		sceneToHide = subScene;
 	}
 	public static void highlight(ArrayList<int[]>cell) {
 		for(int i = 0 ; i < cell.size(); i++) {
@@ -216,15 +215,15 @@ public class ViewManager {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				showSubScene(HowToPlaySubScene);
+				showSubScene(howToPlaySubScene);
 				TokenGuide tokenguide = new TokenGuide();
 				tokenguide.setLayoutX(15);
 				tokenguide.setLayoutY(5);
-				HowToPlaySubScene.getPane().getChildren().add(tokenguide);
+				howToPlaySubScene.getPane().getChildren().add(tokenguide);
 				MovementRules movementRules = new MovementRules();
 				movementRules.setLayoutX(290);
 				movementRules.setLayoutY(5);
-				HowToPlaySubScene.getPane().getChildren().add(movementRules);
+				howToPlaySubScene.getPane().getChildren().add(movementRules);
 			}
 		});
 	}
@@ -237,7 +236,7 @@ public class ViewManager {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				showSubScene(CreditsSubScene);
+				showSubScene(creditsSubScene);
 				VBox tmpVBox = new VBox();
 				Label label = new Label("Created by");
 				Label Name1 = new Label("6332016921 Thrapoom Sakulpiyawong");
@@ -249,7 +248,7 @@ public class ViewManager {
 				tmpVBox.setLayoutX(15);
 				tmpVBox.setLayoutY(80);
 				tmpVBox.setSpacing(25);
-				CreditsSubScene.getPane().getChildren().addAll(tmpVBox);
+				creditsSubScene.getPane().getChildren().addAll(tmpVBox);
 			}
 		});
 	}
