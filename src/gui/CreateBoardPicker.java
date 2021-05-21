@@ -23,9 +23,6 @@ public class CreateBoardPicker extends VBox{
 	private List<BoardPicker>BoardLists;
 	private static BoardPic ChoosenBoard;
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
-	public String getFONT_PATH() {
-		return FONT_PATH;
-	}
 	public CreateBoardPicker() {
 		setHeader();
 		tmpBox = new HBox();

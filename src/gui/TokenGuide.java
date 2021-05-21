@@ -34,9 +34,36 @@ public class TokenGuide extends VBox{
 		VBox tmpVBox = new VBox();
 		ImageView imv = new ImageView(new Image(url));
 		Label eachToken = new Label(name);
+		Label tokenTip = new Label();
 		eachToken.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 16));
 		eachToken.setTextFill(Color.BLACK);
-		tmpHBox.getChildren().addAll(imv , eachToken);
+		if(name=="Laser Tower") {
+			tokenTip.setText("Shoot a beam of laser in the direction of" + "\n"
+					+ "the turret. The laser can laser can deflect" + "\n" 
+					+ "or captured a token depends on its ability" + "\n"
+					+ "and direction. The turret shoot at the end " + "\n"
+					+ "of each turn.");
+		}
+		else if(name=="Deflector") {
+			tokenTip.setText("The Deflector can deflector the laser beam" + "\n"
+					+ "on to change the direction " + "\n"
+					+ "the beam is going.");
+		}
+		else if(name=="Defender") {
+			tokenTip.setText("The Defender can stop the laser beam if" + "\n"
+					+ "it is hit in the direction it's facing.");
+		}
+		else if(name=="Switch") {
+			tokenTip.setText("The Switch can deflector laser on all of " + "\n"
+					+ "its sides. The Switch can swap place with" + "\n"
+					+ "another Deflecter or Defender.");
+		}
+		else {
+			tokenTip.setText("The King is the most important token." + "\n"
+					+ "If it's captured you  will lose.");
+		}
+		tmpVBox.getChildren().addAll(eachToken,tokenTip);
+		tmpHBox.getChildren().addAll(imv , tmpVBox);
 		tmpHBox.setSpacing(10);
 		this.getChildren().add(tmpHBox);
 	}

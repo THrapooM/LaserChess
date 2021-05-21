@@ -14,15 +14,15 @@ public class LaserChessSubScene extends SubScene{
 	private static final String BACKGROUND_IMAGE = "/subscene.png";
 	private boolean isHidden;
 	public LaserChessSubScene() {
-		super(new AnchorPane() ,620,440);
+		super(new AnchorPane() ,620,500);
 		isHidden = true;
 		prefWidth(620);
-		prefHeight(440);
+		prefHeight(500);
 		Image backgroundImage = new Image(BACKGROUND_IMAGE,620, 440, false, false);
 		BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
 		AnchorPane root2 = (AnchorPane) this.getRoot();
 		root2.setBackground(new Background(background));
-		setLayoutY(1070);
+		setLayoutY(1020);
 		setLayoutX(1200);
 	}
 	public void moveSubScene() {

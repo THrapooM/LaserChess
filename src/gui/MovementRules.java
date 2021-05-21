@@ -23,33 +23,49 @@ public class MovementRules extends VBox{
 		this.getChildren().add(header);
 		HBox tmpHbox = new HBox();
 		VBox tmpVbox = new VBox();
-		tmpVbox = addRules(MOVEMENT_RULE1,"");
+		tmpVbox = addRules(MOVEMENT_RULE1,1);
 		tmpHbox.getChildren().add(tmpVbox);
-		tmpVbox = addRules(MOVEMENT_RULE2,"");
+		tmpVbox = addRules(MOVEMENT_RULE2,2);
 		tmpHbox.getChildren().add(tmpVbox);
 		tmpHbox.setSpacing(15);
 		tmpHbox.setAlignment(Pos.CENTER);
 		this.getChildren().add(tmpHbox);
 		tmpHbox = new HBox();
-		tmpVbox = addRules(MOVEMENT_RULE3,"");
+		tmpVbox = addRules(MOVEMENT_RULE3,3);
 		tmpHbox.getChildren().add(tmpVbox);
-		tmpVbox = addRules(MOVEMENT_RULE4,"");
+		tmpVbox = addRules(MOVEMENT_RULE4,4);
 		tmpHbox.getChildren().add(tmpVbox);
 		tmpHbox.setSpacing(15);
 		tmpHbox.setAlignment(Pos.CENTER);
 		this.getChildren().add(tmpHbox);
 		this.setPadding(new Insets(10));
-		this.setSpacing(50);
+		this.setSpacing(10);
 	}
-	public VBox addRules(String url ,String text) {
+	public VBox addRules(String url ,int order) {
 		VBox tmpVbox = new VBox();
-		Label tmpLabel = new Label(text);
+		Label tmpLabel = new Label();
 		ImageView imv = new ImageView(new Image(url));
 		imv.setFitWidth(100);
 		imv.setFitHeight(100);
-		tmpLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 16));
-		tmpLabel.setTextFill(Color.BLACK);
-		tmpLabel.setMaxWidth(20);
+		if(order==1) {
+			tmpLabel.setText("All token except the" + "\n"
+					+ "Turret can move" + "\n"
+					+ "in all 8 directions.");
+		}
+		else if(order==2) {
+			tmpLabel.setText("All token can rotate " + "\n"
+					+ "left or right.");
+		}
+		else if(order==3) {
+			tmpLabel.setText("The Turret can only " + "\n"
+					+ "rotate.");
+		}
+		else {
+			tmpLabel.setText("The Switch can swap" + "\n"
+					+ "place with another" + "\n"
+					+ "Deflector or Defender.");
+		}
+		tmpVbox.setSpacing(10);
 		tmpVbox.getChildren().addAll(imv , tmpLabel);
 		return tmpVbox;
 		
