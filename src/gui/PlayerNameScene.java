@@ -3,6 +3,8 @@ package gui;
 import Exception.NoNameException;
 import View.ViewManager;
 import element.Audioloader;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -35,6 +37,14 @@ public class PlayerNameScene extends VBox{
 		ImageView imv = new ImageView(image);
 		Label label = new Label("ENTER TEAM RED NAME :");
 		p1TextField = new TextField();
+		p1TextField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
+	        public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+	            if (p1TextField.getText().length() > 11) {
+	                String s = p1TextField.getText().substring(0, 11);
+	                p1TextField.setText(s);
+	            }
+	        }
+	    });
 		p1TextField.setPrefWidth(160);
 		p1TextField.setMaxWidth(160);
 		HBox tmpHBox = new HBox();
@@ -49,6 +59,14 @@ public class PlayerNameScene extends VBox{
 		ImageView imv = new ImageView(image);
 		Label label = new Label("ENTER TEAM BLUE NAME :");
 		p2TextField = new TextField();
+		p2TextField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
+	        public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+	            if (p2TextField.getText().length() > 11) {
+	                String s = p2TextField.getText().substring(0, 11);
+	                p2TextField.setText(s);
+	            }
+	        }
+	    });
 		p2TextField.setPrefWidth(160);
 		p2TextField.setMaxWidth(160);
 		HBox tmpHBox = new HBox();
