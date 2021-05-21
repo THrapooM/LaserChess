@@ -59,7 +59,7 @@ public class ViewManager {
 	private static EndGameSubScene endMenuSubScene;
 	private static EndGameButton endGameButton;
 	private static CreateBoardPicker AllBoard;
-	private final static String FONT_PATH = "ZenDots-Regular.ttf";
+	private final static String FONT_PATH = "/ZenDots-Regular.ttf";
 	public ViewManager() {
 		mainStage = new Stage();
 		mainStage.setTitle("Laser Chess");
@@ -100,13 +100,16 @@ public class ViewManager {
 	public static void showEndScene() {
 		endMenuSubScene =  new EndGameSubScene();
 		String WinnerName = GameManager.getWinnerTeam();
-		Label label = new Label(WinnerName + " win");
-		label.setFont(new Font(FONT_PATH,23));
+		String
+		Label label = new Label(WinnerName);
+		Label label2 = new Label("Win");
+		label2.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),23));
+		label.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),23));
 		VBox tmpVBox = new VBox();
 		endGameButton = new EndGameButton();
-		tmpVBox.getChildren().addAll(label,endGameButton);
+		tmpVBox.getChildren().addAll(label,label2,endGameButton);
 		tmpVBox.setLayoutX(50);
-		tmpVBox.setLayoutY(250);
+		tmpVBox.setLayoutY(100);
 		tmpVBox.setSpacing(50);
 		tmpVBox.setAlignment(Pos.CENTER);
 		endMenuSubScene.getPane().getChildren().addAll(tmpVBox);
@@ -235,6 +238,18 @@ public class ViewManager {
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				showSubScene(CreditsSubScene);
+				VBox tmpVBox = new VBox();
+				Label label = new Label("Created by");
+				Label Name1 = new Label("6332016921 Thrapoom Sakulpiyawong");
+				Label Name2 = new Label("Prach Boonud");
+				label.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
+				Name1.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
+				Name2.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
+				tmpVBox.getChildren().addAll(label,Name1,Name2);
+				tmpVBox.setLayoutX(15);
+				tmpVBox.setLayoutY(80);
+				tmpVBox.setSpacing(25);
+				CreditsSubScene.getPane().getChildren().addAll(tmpVBox);
 			}
 		});
 	}
@@ -243,7 +258,6 @@ public class ViewManager {
 		MenuButton ExitButton = new MenuButton("/EXITbutton.png");
 		mainPane.getChildren().add(ExitButton);
 		ExitButton.setOnAction(new EventHandler<ActionEvent>() {
-			
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub

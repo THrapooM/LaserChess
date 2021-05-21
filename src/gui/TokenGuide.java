@@ -39,7 +39,7 @@ public class TokenGuide extends VBox{
 		eachToken.setTextFill(Color.BLACK);
 		if(name=="Laser Tower") {
 			tokenTip.setText("Shoot a beam of laser in the direction of" + "\n"
-					+ "the turret. The laser can laser can deflect" + "\n" 
+					+ "the turret. The laser can deflect" + "\n" 
 					+ "or captured a token depends on its ability" + "\n"
 					+ "and direction. The turret shoot at the end " + "\n"
 					+ "of each turn.");

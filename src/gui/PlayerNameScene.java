@@ -24,7 +24,7 @@ public class PlayerNameScene extends VBox{
 	private final String TEAM_BLUE = "TEAM_BLUE.png";
 	public PlayerNameScene() {
 		this.setLayoutX(15);
-		this.setLayoutY(30);
+		this.setLayoutY(83);
 		this.setSpacing(30);
 		createRedTeam();
 		createBlueTeam();
@@ -35,8 +35,8 @@ public class PlayerNameScene extends VBox{
 		ImageView imv = new ImageView(image);
 		Label label = new Label("ENTER TEAM RED NAME :");
 		p1TextField = new TextField();
-		p1TextField.setPrefWidth(200);
-		p1TextField.setMaxWidth(200);
+		p1TextField.setPrefWidth(160);
+		p1TextField.setMaxWidth(160);
 		HBox tmpHBox = new HBox();
 		tmpHBox.getChildren().addAll(label,p1TextField);
 		tmpHBox.setSpacing(40);
@@ -49,8 +49,8 @@ public class PlayerNameScene extends VBox{
 		ImageView imv = new ImageView(image);
 		Label label = new Label("ENTER TEAM BLUE NAME :");
 		p2TextField = new TextField();
-		p2TextField.setPrefWidth(200);
-		p2TextField.setMaxWidth(200);
+		p2TextField.setPrefWidth(160);
+		p2TextField.setMaxWidth(160);
 		HBox tmpHBox = new HBox();
 		tmpHBox.getChildren().addAll(label,p2TextField);
 		tmpHBox.setSpacing(30);
