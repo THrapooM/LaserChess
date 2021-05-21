@@ -26,7 +26,7 @@ public class StartingBoard {
 				
 				{{new LaserTower(2,0,0,1), null, null, null, new Deflector(2,0,4,1), new Defender(2,0,5,1), new Deflector(1,0,6,1), null, null, null},
 			     {null, null, null, null, null, new King(0,1,5,1), null, null, null, null},
-			     {new Deflector(0,2,0,1), null, null, null, new Deflector(2,2,5,1), new Defender(2,2,5,1), new Switch(1,2,6,1), null, null, null},
+			     {new Deflector(0,2,0,1), null, null, null, new Deflector(2,2,4,1), new Defender(2,2,5,1), new Switch(1,2,6,1), null, null, null},
 			     {new Deflector(1,3,0,1), null, new Switch(0,3,2,1), null, new Deflector(3,3,4,2), null, new Deflector(1,3,6,2), null, null, null},
 			     {null, null, null, new Deflector(3,4,3,1), null, new Deflector(1,4,5,1), null, new Switch(0,4,7,2), null, new Deflector(3,4,9,2)},
 			     {null, null, null, new Switch(1,5,3,2), new Defender(0,5,4,2), new Deflector(0,5,5,2), null, null, null, new Deflector(2,5,9,2)},
