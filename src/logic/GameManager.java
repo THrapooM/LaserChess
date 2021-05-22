@@ -17,14 +17,12 @@ public class GameManager {
 	private static String[] team = new String[2];
 	private static int teamTurn = 1;
 	private static ChessPiece[] laserTurret = new ChessPiece[2];
-	private static boolean gameIsOver = false;
 	private static int tmpx,tmpy,tmpdir,newdir,tmpurl;
 	private static final String SOUND_PATH = "audio/jellyBeam.mp3";
 	private static final int[] moveX = {-1,-1,0,1,1,1,0,-1};
 	private static final int[] moveY = {0,1,1,1,0,-1,-1,-1};
 	private static final int[] laserX = {-1,0,1,0};
 	private static final int[] laserY = {0,1,0,-1};
-	private static final String[] laserURL = {};
 	
 	public static void startGame(int boardNumber) {
 		teamTurn = 1;
@@ -41,24 +39,6 @@ public class GameManager {
 		winnerTeam = 0;
 		laserTurret[0] = chessBoard[0][0];
 		laserTurret[1] = chessBoard[7][9];
-	}
-	
-	public static void setTeamName(String team1,String team2) {
-		team[0] = team1;
-		team[1] = team2;
-	}
-	
-	public static String[] getTeamName() {
-		String[] tmp = {team[0], team[1]};
-		return tmp;
-	}
-	
-	public static int getTeamTurn() {
-		return teamTurn;
-	}
-	
-	public static ChessPiece getChessPiece(int x,int y) {
-		return chessBoard[x][y];
 	}
 	
 	public static void changeTurn() {
@@ -125,22 +105,25 @@ public class GameManager {
 	
 	public static void kingIsKilled(int loserTeam) {
 		winnerTeam = loserTeam == 1? 2:1;
-		gameIsOver = true;
 		ViewManager.showEndScene();
 	}
 	
-	public static void setSelectedChessPiece(ChessPiece selectedChessPiece) {
-		GameManager.selectedChessPiece = selectedChessPiece;
-	}
-	
-	public static void chessPieceCaptured(ChessPiece capturedChessPiece) {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
-				ViewManager.updateBoard();			
+	public static ArrayList<int[]> getMovablePOS(){
+		ArrayList<int[]> movablePOS = new ArrayList<int[]>();
+		for(int i = 0;i < 8;i++) {
+			if(selectedChessPiece instanceof LaserTower) break;
+			int tmpx = selectedChessPiece.getX() + moveX[i];
+			int tmpy = selectedChessPiece.getY() + moveY[i];
+			if(tmpx >= 0 && tmpx <= 7 && tmpy >= 0 && tmpy <= 9) {
+				if(!(selectedChessPiece instanceof Switch) && chessBoard[tmpx][tmpy] != null) continue;
+				if(chessBoard[tmpx][tmpy] instanceof King || chessBoard[tmpx][tmpy] instanceof Switch || chessBoard[tmpx][tmpy] instanceof LaserTower) continue;
+				if(selectedChessPiece.getTeam() == 1 && (tmpy == 9 || (tmpy == 1 && (tmpx == 0 || tmpx == 7)))) continue;
+				if(selectedChessPiece.getTeam() == 2 && (tmpy == 0 || (tmpy == 8 && (tmpx == 0 || tmpx == 7)))) continue;
+				int[] tmpPOS = {tmpx,tmpy};
+				movablePOS.add(tmpPOS);
 			}
-		});
+		}
+		return movablePOS;
 	}
 	
 	public static void move(int x1,int y1) {
@@ -169,63 +152,39 @@ public class GameManager {
 		ViewManager.updateBoard();
 		changeTurn();
 	}
-
-	public static ArrayList<int[]> getMovablePOS(){
-		ArrayList<int[]> movablePOS = new ArrayList<int[]>();
-		for(int i = 0;i < 8;i++) {
-			if(selectedChessPiece instanceof LaserTower) break;
-			int tmpx = selectedChessPiece.getX() + moveX[i];
-			int tmpy = selectedChessPiece.getY() + moveY[i];
-			if(tmpx >= 0 && tmpx <= 7 && tmpy >= 0 && tmpy <= 9) {
-				if(!(selectedChessPiece instanceof Switch) && chessBoard[tmpx][tmpy] != null) continue;
-				if(chessBoard[tmpx][tmpy] instanceof King || chessBoard[tmpx][tmpy] instanceof Switch || chessBoard[tmpx][tmpy] instanceof LaserTower) continue;
-				if(selectedChessPiece.getTeam() == 1 && (tmpy == 9 || (tmpy == 1 && (tmpx == 0 || tmpx == 7)))) continue;
-				if(selectedChessPiece.getTeam() == 2 && (tmpy == 0 || (tmpy == 8 && (tmpx == 0 || tmpx == 7)))) continue;
-				int[] tmpPOS = {tmpx,tmpy};
-				movablePOS.add(tmpPOS);
+	
+	public static void chessPieceCaptured(ChessPiece capturedChessPiece) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				chessBoard[capturedChessPiece.getX()][capturedChessPiece.getY()] = null;
+				ViewManager.updateBoard();			
 			}
-		}
-		return movablePOS;
+		});
 	}
 	
-	public static ChessPiece[][] getChessBoard() {
-		return chessBoard;
+	public static void setTeamName(String team1,String team2) {
+		team[0] = team1;
+		team[1] = team2;
+	}
+	
+	public static String[] getTeamName() {
+		return team;
+	}
+	
+	public static int getTeamTurn() {
+		return teamTurn;
+	}
+	
+	public static ChessPiece getChessPiece(int x,int y) {
+		return chessBoard[x][y];
+	}
+	public static void setSelectedChessPiece(ChessPiece selectedChessPiece) {
+		GameManager.selectedChessPiece = selectedChessPiece;
 	}
 
 	public static ChessPiece getSelectedChessPiece() {
 		return selectedChessPiece;
-	}
-
-	public static String[] getTeam() {
-		return team;
-	}
-
-	public static ChessPiece[] getLaserTurret() {
-		return laserTurret;
-	}
-
-	public static boolean isGameIsOver() {
-		return gameIsOver;
-	}
-
-	public static int[] getMovex() {
-		return moveX;
-	}
-
-	public static int[] getMovey() {
-		return moveY;
-	}
-
-	public static int[] getLaserx() {
-		return laserX;
-	}
-
-	public static int[] getLasery() {
-		return laserY;
-	}
-
-	public static String[] getLaserurl() {
-		return laserURL;
 	}
 
 	public static String getWinnerTeam() {
