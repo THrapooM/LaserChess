@@ -16,7 +16,6 @@ public class BoardPicker extends VBox{
 	private String CircleChoosen = "/red_boxTick.png";
 	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private BoardPic boardpic;
-	
 	private boolean isCircleChoosen;
 	public BoardPicker(BoardPic Board) {
 		this.setAlignment(Pos.CENTER);

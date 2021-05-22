@@ -43,7 +43,8 @@ public class BoardCell extends Pane{
 			}
 			else {
 				GameManager.setSelectedChessPiece(chessPiece);
-				ButtonController.setstyle();
+				if(!(GameManager.getSelectedChessPiece() instanceof King))
+					ButtonController.setstyle();
 				ArrayList<int[]> getMove = GameManager.getMovablePOS();
 				ViewManager.unhighlight();
 				ViewManager.highlight(getMove);

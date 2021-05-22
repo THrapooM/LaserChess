@@ -6,7 +6,7 @@ public enum BoardPic {
 	Grail("/Grail.png"),
 	Mercury("/Mercury.png"),
 	Sophie("/Sophie.png");
-	String urlBoard;
+	private String urlBoard;
 	
 	private BoardPic(String urlBoard) {
 		this.urlBoard = urlBoard;

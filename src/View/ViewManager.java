@@ -289,10 +289,4 @@ public class ViewManager {
 	public static Stage getMainStage() {
 		return mainStage;
 	}
-	public static StackPane getGamePane() {
-		return gamePane;
-	}
-	public static Scene getMainScene() {
-		return mainScene;
-	}
 }

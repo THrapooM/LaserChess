@@ -3,7 +3,7 @@
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="gui.BoardCell" project="Razor_Chess" file="/Razor_Chess/src/gui/BoardCell.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="294" width="164" x="508" y="74"/>    
+    <position height="294" width="164" x="683" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="gui.BoardPane" project="Razor_Chess" file="/Razor_Chess/src/gui/BoardPane.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="114" width="167" x="176" y="277"/>    
+    <position height="114" width="167" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,13 +21,22 @@
   </class>  
   <enumeration id="3" language="java" name="gui.BoardPic" project="Razor_Chess" 
     file="/Razor_Chess/src/gui/BoardPic.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="204" width="119" x="66" y="73"/>    
+    <position height="204" width="119" x="248" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
+  <class id="4" language="java" name="View.ViewManager" project="Razor_Chess" 
+    file="/Razor_Chess/src/View/ViewManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="888" width="236" x="407" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

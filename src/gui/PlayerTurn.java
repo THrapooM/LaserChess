@@ -11,14 +11,12 @@ import javafx.scene.text.Font;
 import logic.GameManager;
 
 public class PlayerTurn extends HBox{
-	public String redPlayerName,bluePlayerName,redTurn,blueTurn;
-	public static Boolean turn = true;
+	private String redTurn,blueTurn;
+	private static Boolean turn = true;
 	private static final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public PlayerTurn() {
-		redPlayerName = GameManager.getTeamName()[0];
-		bluePlayerName = GameManager.getTeamName()[1];
-		redTurn = redPlayerName + "'s Turn";
-		blueTurn = bluePlayerName + "'s Turn ";
+		redTurn = GameManager.getTeamName()[0] + "'s Turn";
+		blueTurn = GameManager.getTeamName()[1] + "'s Turn ";
 		swapTurn();
 	}
 	public void swapTurn() {

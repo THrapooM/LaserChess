@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.GameManager;
+import logic.King;
 import logic.Switch;
 
 public class ButtonController extends HBox{
