@@ -17,7 +17,6 @@ public class GameManager {
 	private static String[] team = new String[2];
 	private static int teamTurn = 1;
 	private static ChessPiece[] laserTurret = new ChessPiece[2];
-	private static ArrayList<int[]> laserPath;
 	private static boolean gameIsOver = false;
 	private static int tmpx,tmpy,tmpdir,newdir,tmpurl;
 	private static final String SOUND_PATH = "audio/jellyBeam.mp3";
@@ -203,10 +202,6 @@ public class GameManager {
 
 	public static ChessPiece[] getLaserTurret() {
 		return laserTurret;
-	}
-
-	public static ArrayList<int[]> getLaserPath() {
-		return laserPath;
 	}
 
 	public static boolean isGameIsOver() {
