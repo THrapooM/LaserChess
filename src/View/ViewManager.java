@@ -240,7 +240,7 @@ public class ViewManager {
 				VBox tmpVBox = new VBox();
 				Label label = new Label("Created by");
 				Label Name1 = new Label("6332016921 Thrapoom Sakulpiyawong");
-				Label Name2 = new Label("Prach Boonud");
+				Label Name2 = new Label("6332027821 Prach Boonud");
 				label.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
 				Name1.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
 				Name2.setFont(Font.loadFont(ViewManager.class.getResource(FONT_PATH).toExternalForm(),20));
