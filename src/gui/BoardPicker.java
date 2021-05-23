@@ -14,7 +14,6 @@ public class BoardPicker extends VBox{
 	private ImageView boardImage;
 	private String CircleNotChoosen = "/grey_circle.png";
 	private String CircleChoosen = "/red_boxTick.png";
-	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private BoardPic boardpic;
 	private boolean isCircleChoosen;
 	public BoardPicker(BoardPic Board) {
@@ -28,7 +27,7 @@ public class BoardPicker extends VBox{
 		this.boardpic = Board;
 		this.setSpacing(15);
 		this.getChildren().add(boardLabel);
-		boardLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
+		boardLabel.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),23));
 		this.getChildren().add(boardImage);
 		this.getChildren().add(circleImage);
 	}

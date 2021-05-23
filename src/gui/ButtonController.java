@@ -15,7 +15,6 @@ import logic.Switch;
 
 public class ButtonController extends HBox{
 	private static Button rotateLeftButton,rotateRightButton;
-	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private final static String ROTATE_BUTTON_STYLE = "-fx-background-color:lightgreen;";
 	public ButtonController() {
 		this.setPrefHeight(100);
@@ -29,8 +28,8 @@ public class ButtonController extends HBox{
 		this.getChildren().addAll(rotateLeftButton,rotateRightButton);
 	}
 	private void setfont() {
-		rotateLeftButton.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
-		rotateRightButton.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
+		rotateLeftButton.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),23));
+		rotateRightButton.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),23));
 	}
 	public static void setstyle() {
 		rotateLeftButton.setStyle(ROTATE_BUTTON_STYLE);
@@ -56,7 +55,6 @@ public class ButtonController extends HBox{
 				}
 			}
 		});
-		
 		rotateRightButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {					
@@ -72,5 +70,11 @@ public class ButtonController extends HBox{
 				}
 			}
 		});
+	}
+	public static Button getRotateLeftButton() {
+		return rotateLeftButton;
+	}
+	public static Button getRotateRightButton() {
+		return rotateRightButton;
 	}
 }

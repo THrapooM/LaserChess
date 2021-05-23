@@ -1,5 +1,6 @@
 package gui;
 
+import View.ViewManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -15,10 +16,9 @@ public class MovementRules extends VBox{
 	private static final String MOVEMENT_RULE2 = "/rule2.png";
 	private static final String MOVEMENT_RULE3 = "/rule3.png";
 	private static final String MOVEMENT_RULE4 = "/rule4.png";
-	private static final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public MovementRules() {
 		Label header = new Label("MOVEMENT RULES");
-		header.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 24));
+		header.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),24));
 		header.setTextFill(Color.BLACK);
 		this.getChildren().add(header);
 		HBox tmpHbox = new HBox();

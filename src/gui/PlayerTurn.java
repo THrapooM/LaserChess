@@ -1,5 +1,6 @@
 package gui;
 
+import View.ViewManager;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -13,7 +14,6 @@ import logic.GameManager;
 public class PlayerTurn extends HBox{
 	private String redTurn,blueTurn;
 	private static Boolean turn = true;
-	private static final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public PlayerTurn() {
 		redTurn = GameManager.getTeamName()[0] + "'s Turn";
 		blueTurn = GameManager.getTeamName()[1] + "'s Turn ";
@@ -22,18 +22,18 @@ public class PlayerTurn extends HBox{
 	public void swapTurn() {
 		this.getChildren().clear();
 		Label redLabel = new Label(redTurn);
-		redLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
+		redLabel.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),30));
 		redLabel.setTextFill(Color.web("#ff1458"));
 		Label blueLabel = new Label(blueTurn);
-		blueLabel.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 30));
+		blueLabel.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),30));
 		blueLabel.setTextFill(Color.web("121c5e"));
 		if(turn) {
-			redLabel.setEffect(new Glow(0.8));
+			redLabel.setEffect(new Glow(1));
 			blueLabel.setEffect(null);
 		}
 		else {
 			redLabel.setEffect(null);
-			blueLabel.setEffect(new Glow(0.8));
+			blueLabel.setEffect(new Glow(1));
 		}
 		turn = !turn;
 		HBox tmpHBox = new HBox();

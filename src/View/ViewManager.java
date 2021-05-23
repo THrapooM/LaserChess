@@ -289,4 +289,7 @@ public class ViewManager {
 	public static Stage getMainStage() {
 		return mainStage;
 	}
+	public static String getFontPath() {
+		return FONT_PATH;
+	}
 }

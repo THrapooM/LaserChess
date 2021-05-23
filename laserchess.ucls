@@ -3,7 +3,7 @@
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="gui.BoardCell" project="Razor_Chess" file="/Razor_Chess/src/gui/BoardCell.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="294" width="164" x="683" y="37"/>    
+    <position height="294" width="164" x="761" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,31 +12,265 @@
   </class>  
   <class id="2" language="java" name="gui.BoardPane" project="Razor_Chess" file="/Razor_Chess/src/gui/BoardPane.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="114" width="167" x="41" y="37"/>    
+    <position height="114" width="167" x="3194" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="gui.BoardPic" project="Razor_Chess" 
-    file="/Razor_Chess/src/gui/BoardPic.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="204" width="119" x="248" y="37"/>    
+  <class id="3" language="java" name="gui.BoardPicker" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/BoardPicker.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="258" width="186" x="2692" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </enumeration>  
-  <class id="4" language="java" name="View.ViewManager" project="Razor_Chess" 
+  </class>  
+  <class id="4" language="java" name="gui.ButtonController" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/ButtonController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="204" width="184" x="1465" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="gui.CreateBoardPicker" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/CreateBoardPicker.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="204" width="169" x="1865" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="gui.EndGameButton" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/EndGameButton.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="135" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="gui.EndGameSubScene" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/EndGameSubScene.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="96" width="138" x="2074" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="gui.LaserChessSubScene" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/LaserChessSubScene.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="150" width="171" x="3401" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="gui.LaserPane" project="Razor_Chess" file="/Razor_Chess/src/gui/LaserPane.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="78" width="87" x="2392" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="gui.MenuButton" project="Razor_Chess" file="/Razor_Chess/src/gui/MenuButton.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="136" x="1689" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="gui.MovementRules" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/MovementRules.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="168" width="157" x="564" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="gui.PicInformation" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/PicInformation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="96" width="133" x="2519" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="gui.PlayerNameScene" project="Razor_Chess" 
+    file="/Razor_Chess/src/gui/PlayerNameScene.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="222" width="158" x="3612" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="gui.PlayerTurn" project="Razor_Chess" file="/Razor_Chess/src/gui/PlayerTurn.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="150" width="100" x="2252" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="gui.TokenGuide" project="Razor_Chess" file="/Razor_Chess/src/gui/TokenGuide.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="186" width="157" x="216" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="logic.ChessPiece" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/ChessPiece.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="402" width="143" x="3810" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="logic.Defender" project="Razor_Chess" file="/Razor_Chess/src/logic/Defender.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="129" x="3810" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="logic.Deflector" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/Deflector.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="129" x="3303" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="logic.GameManager" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/GameManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="618" width="225" x="1200" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="logic.King" project="Razor_Chess" file="/Razor_Chess/src/logic/King.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="96" width="107" x="3979" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="logic.LaserTower" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/LaserTower.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="141" x="3629" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="logic.Switch" project="Razor_Chess" file="/Razor_Chess/src/logic/Switch.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="117" x="3472" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="23" language="java" name="logic.base.Rotatable" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/base/Rotatable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="78" width="102" x="3554" y="1101"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="logic.base.StartingBoard" project="Razor_Chess" 
+    file="/Razor_Chess/src/logic/base/StartingBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="195" x="965" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="main.Main" project="Razor_Chess" file="/Razor_Chess/src/main/Main.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="114" width="111" x="413" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="View.ViewManager" project="Razor_Chess" 
     file="/Razor_Chess/src/View/ViewManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="888" width="236" x="407" y="37"/>    
+    <position height="870" width="236" x="2918" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="30">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="31">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="32">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -21,7 +21,6 @@ import logic.GameManager;
 
 public class PlayerNameScene extends VBox{
 	private TextField p1TextField,p2TextField;
-	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	private final String TEAM_RED = "TEAM_RED.png";
 	private final String TEAM_BLUE = "TEAM_BLUE.png";
 	public PlayerNameScene() {
@@ -76,12 +75,12 @@ public class PlayerNameScene extends VBox{
 		setfont(label, p2TextField);
 	}
 	private void setfont(Label label , TextField textField) {
-		label.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 15));
-		textField.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 15));
+		label.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),15));
+		textField.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),15));
 	}
 	private void createStartButton() {
 		Button NEXTButton = new Button("NEXT");
-		NEXTButton.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 15));
+		NEXTButton.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),15));
 		HBox tmpHBox = new HBox();
 		tmpHBox.setAlignment(Pos.CENTER);
 		tmpHBox.getChildren().add(NEXTButton);

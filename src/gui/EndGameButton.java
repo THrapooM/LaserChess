@@ -10,12 +10,11 @@ import javafx.scene.text.Font;
 
 public class EndGameButton extends VBox{
 	private Button restart,mainMenu;
-	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public EndGameButton() {
 		restart = new Button("RESTART");
 		mainMenu = new Button("MAIN MENU");
-		restart.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
-		mainMenu.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 23));
+		restart.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),23));
+		mainMenu.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),23));
 		this.getChildren().addAll(restart,mainMenu);
 		this.setSpacing(25);
 		this.setAlignment(Pos.CENTER);

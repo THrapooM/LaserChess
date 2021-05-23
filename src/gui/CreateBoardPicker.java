@@ -22,7 +22,6 @@ public class CreateBoardPicker extends VBox{
 	private HBox tmpBox;
 	private List<BoardPicker>BoardLists;
 	private static BoardPic ChoosenBoard;
-	private final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public CreateBoardPicker() {
 		setHeader();
 		tmpBox = new HBox();
@@ -64,13 +63,14 @@ public class CreateBoardPicker extends VBox{
 	}
 	private void setHeader() {
 		Label label = new Label("SELECT BOARD");
-		label.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 50));
+		label.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),50));
+//		label.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 50));
 		this.setAlignment(Pos.CENTER);
 		this.getChildren().add(label);
 	}
 	private void createStartButton() {
 		Button Next = new Button("Start");
-		Next.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 20));
+		Next.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),20));
 		this.getChildren().add(Next);
 		Next.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

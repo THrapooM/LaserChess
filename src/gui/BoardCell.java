@@ -28,7 +28,6 @@ public class BoardCell extends Pane{
 				new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent  e) {
-						
 						onClickHandler();
 					}
 			});
@@ -43,8 +42,14 @@ public class BoardCell extends Pane{
 			}
 			else {
 				GameManager.setSelectedChessPiece(chessPiece);
-				if(!(GameManager.getSelectedChessPiece() instanceof King))
-					ButtonController.setstyle();
+				if(GameManager.getSelectedChessPiece() instanceof King) {
+					ButtonController.getRotateLeftButton().setDisable(true);
+					ButtonController.getRotateRightButton().setDisable(true);
+				}
+				else {
+					ButtonController.getRotateLeftButton().setDisable(false);
+					ButtonController.getRotateRightButton().setDisable(false);
+				}
 				ArrayList<int[]> getMove = GameManager.getMovablePOS();
 				ViewManager.unhighlight();
 				ViewManager.highlight(getMove);

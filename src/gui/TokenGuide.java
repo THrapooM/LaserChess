@@ -1,5 +1,6 @@
 package gui;
 
+import View.ViewManager;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,10 +16,9 @@ public class TokenGuide extends VBox{
 	private static final String GuideDefender = "/GuideDefender.png";
 	private static final String GuideSwitch = "/GuideSwitch.png";
 	private static final String GuideKing = "/GuideKing.png";
-	private static final String FONT_PATH = "/ZenDots-Regular.ttf";
 	public TokenGuide() {
 		Label header = new Label("TOKEN GUIDE");
-		header.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 24));
+		header.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),24));
 		header.setTextFill(Color.BLACK);
 		this.getChildren().add(header);
 		addToken(GuideLaserTower ,"Laser Tower");
@@ -35,7 +35,7 @@ public class TokenGuide extends VBox{
 		ImageView imv = new ImageView(new Image(url));
 		Label eachToken = new Label(name);
 		Label tokenTip = new Label();
-		eachToken.setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 16));
+		eachToken.setFont(Font.loadFont(ViewManager.class.getResource(ViewManager.getFontPath()).toExternalForm(),16));
 		eachToken.setTextFill(Color.BLACK);
 		if(name=="Laser Tower") {
 			tokenTip.setText("Shoot a beam of laser in the direction of" + "\n"

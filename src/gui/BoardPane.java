@@ -1,13 +1,9 @@
 package gui;
 
-
-import java.util.ArrayList;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import logic.GameManager;
-import logic.base.StartingBoard;
 
 public class BoardPane extends GridPane{
 	private BoardCell[][] boardCellList = new BoardCell[8][10];
